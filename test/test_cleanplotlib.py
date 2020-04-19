@@ -3,7 +3,7 @@ import numpy
 import cleanplotlib as cpl
 
 
-def test_rand():
+def test_plot():
     numpy.random.seed(0)
 
     x0 = numpy.linspace(0.0, 3.0, 100)
@@ -20,5 +20,26 @@ def test_rand():
     y2 = 1.6 * x2 / (x2 + 1)
     y2 += 0.1 * numpy.random.rand(len(y2))
     cpl.plot(x2, y2, "another label")
+
+    cpl.show()
+
+
+def test_multiplot():
+    numpy.random.seed(0)
+
+    x = numpy.linspace(0.0, 3.0, 100)
+    y0 = x / (x + 1)
+    # y0 += 0.1 * numpy.random.rand(len(y0))
+    y1 = 1.01 * x / (x + 1)
+    # y1 += 0.1 * numpy.random.rand(len(y1))
+    y2 = 1.03 * x / (x + 1)
+    # y2 += 0.1 * numpy.random.rand(len(y2))
+
+    cpl.multiplot(
+        [x, x, x],
+        [y0, y1, y2],
+        ["label", "long label", "another long label"],
+        min_label_distance=0.05,
+    )
 
     cpl.show()

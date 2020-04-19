@@ -37,8 +37,15 @@ def show(*args, **kwargs):
 
 
 # http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/
-def plot(x, y, label, ygrid=True, fontsize=14):
-    p = plt.plot(x, y)
+def plot(x, y, label, ygrid=True, fontsize=14, height=5):
+    multiplot([x], [y], [label], ygrid=ygrid, fontsize=fontsize, height=height)
+
+
+def multiplot(x, y, labels, min_label_distance=0.0, ygrid=True, fontsize=14, height=5):
+    p = [plt.plot(xx, yy) for xx, yy in zip(x, y)]
+
+    fig = plt.gcf()
+    fig.set_size_inches(16 / 9 * height, height)
 
     # > Remove the plot frame lines. They are unnecessary chartjunk.
     ax = plt.gca()
@@ -54,20 +61,45 @@ def plot(x, y, label, ygrid=True, fontsize=14):
     plt.xticks(fontsize=fontsize)
     plt.yticks(fontsize=fontsize)
 
-    plt.grid(
-        axis="y", linestyle="--", dashes=(10, 10), lw=0.5, color="black", alpha=0.3
-    )
+    if ygrid:
+        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color="black", alpha=0.3)
 
     # Don't waste space
     plt.autoscale(tight=True)
 
-    # plot "legend" entry
+    # Add "legend" entries.
+    # Make sure they don't overlap.
+    targets = [yy[-1] for yy in y]
+    eps = 1.0e-5
+    while True:
+        # Form groups of targets that must be moved together.
+        groups = [[targets[0]]]
+        for t in targets[1:]:
+            if abs(t - groups[-1][-1]) > min_label_distance - eps:
+                groups.append([])
+            groups[-1].append(t)
+
+        if all(len(g) == 1 for g in groups):
+            break
+
+        targets = []
+        for group in groups:
+            # Minimize
+            # 1/2 sum_i (x_i + a - target) ** 2
+            # over a for a group of labels
+            n = len(group)
+            pos = [k * min_label_distance for k in range(n)]
+            a = sum(t - p for t, p in zip(group, pos)) / n
+            new_pos = [p + a for p in pos]
+            targets += new_pos
+
     xlim0, xlim1 = ax.get_xlim()
-    plt.text(
-        xlim1 + (xlim1 - xlim0) / 100,
-        y[-1],
-        label,
-        fontsize=fontsize,
-        verticalalignment="center",
-        color=p[0].get_color(),
-    )
+    for yy, label, t, pp in zip(y, labels, targets, p):
+        plt.text(
+            xlim1 + (xlim1 - xlim0) / 100,
+            t,
+            label,
+            fontsize=fontsize,
+            verticalalignment="center",
+            color=pp[0].get_color(),
+        )
