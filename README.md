@@ -38,7 +38,23 @@ cpl.plot(x2, y2, "CRV27*")
 cpl.show()
 # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
 ```
+If the plot labels get crowded, `cpl.multiplot` arranged them for you:
+```
+import cleanplotlib as cpl
+import numpy
+numpy.random.seed(0)
 
+x = numpy.linspace(0.0, 3.0, 100)
+y0 = x / (x + 1)
+y1 = 1.01 * x / (x + 1)
+y2 = 1.03 * x / (x + 1)
+
+cpl.multiplot(
+    [x, x, x], [y0, y1, y2], ["no balancing", "CRV27", "CRV27*"]
+)
+
+cpl.show()
+```
 Further reading:
 
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
