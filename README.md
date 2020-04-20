@@ -7,13 +7,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/cleanplotlib.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/cleanplotlib)
 [![PyPi downloads](https://img.shields.io/pypi/dm/cleanplotlib.svg?style=flat-square)](https://pypistats.org/packages/cleanplotlib)
 
-This package creates clean, beautiful matplotlib plots like
+This package creates clean and beautiful plots like
 
 <p align="center">
 <img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
 </p>
-
-The plot is created with
 ```python
 import cleanplotlib as cpl
 import numpy
