@@ -36,10 +36,7 @@ def test_multiplot():
     # y2 += 0.1 * numpy.random.rand(len(y2))
 
     cpl.multiplot(
-        [x, x, x],
-        [y0, y1, y2],
-        ["label", "long label", "another long label"],
-        min_label_distance=0.05,
+        [x, x, x], [y0, y1, y2], ["label", "long label", "another long label"]
     )
 
     cpl.show()

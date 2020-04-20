@@ -81,11 +81,30 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     return targets
 
 
-def multiplot(x, y, labels, min_label_distance=0.0, ygrid=True, fontsize=14, height=5):
+def multiplot(
+    x, y, labels, min_label_distance="auto", ygrid=True, fontsize=14, height=5
+):
     p = [plt.plot(xx, yy) for xx, yy in zip(x, y)]
 
     fig = plt.gcf()
     fig.set_size_inches(16 / 9 * height, height)
+
+    if min_label_distance == "auto":
+        # Make sure that the distance is alpha times the fontsize. This needs to be
+        # translated into axes units.
+        alpha = 1.7
+        fig_height = fig.get_size_inches()[0]
+        ax = plt.gca()
+        ax_pos = ax.get_position()
+        ax_height = ax_pos.y1 - ax_pos.y0
+        ax_height_inches = ax_height * fig_height
+        ylim = ax.get_ylim()
+        ax_height_ylim = ylim[1] - ylim[0]
+        # 1 pt = 1/72 in
+        min_label_distance_inches = fontsize / 72 * alpha
+        min_label_distance = (
+            min_label_distance_inches / ax_height_inches * ax_height_ylim
+        )
 
     # > Remove the plot frame lines. They are unnecessary chartjunk.
     ax = plt.gca()
@@ -111,7 +130,8 @@ def multiplot(x, y, labels, min_label_distance=0.0, ygrid=True, fontsize=14, hei
     targets = [yy[-1] for yy in y]
     idx = _argsort(targets)
     targets = _move_min_distance(sorted(targets), min_label_distance)
-    targets = [targets[i] for i in idx]
+    idx2 = [idx.index(k) for k in range(len(idx))]
+    targets = [targets[i] for i in idx2]
 
     xlim0, xlim1 = ax.get_xlim()
     for yy, label, t, pp in zip(y, labels, targets, p):
