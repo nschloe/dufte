@@ -1,4 +1,4 @@
-# pyfoobar Code of Conduct
+# cleanplotlib Code of Conduct
 
 ## Our Pledge
 

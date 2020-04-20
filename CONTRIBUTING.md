@@ -1,4 +1,4 @@
-# pyfoobar contributing guidelines
+# cleanplotlib contributing guidelines
 
 The pyfoobar community appreciates your contributions via issues and
 pull requests.  Note that the [code of conduct](CODE_OF_CONDUCT.md)

@@ -33,10 +33,11 @@ jobs:
         lfs: true
     - name: Install package
       run: |
-        pip install .[all]
+        pip install .
+        pip install -r test_requirements.txt
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
-        pytest --cov pyfoobar
+        pytest --cov cleanplotlib
     # - name: Submit to codecov
     #   run: bash <(curl -s https://codecov.io/bash)

@@ -2,6 +2,7 @@
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/cleanplotlib/ci?style=flat-square)](https://github.com/nschloe/cleanplotlib/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/cleanplotlib.svg?style=flat-square)](https://pypi.org/pypi/cleanplotlib/)
 [![PyPi Version](https://img.shields.io/pypi/v/cleanplotlib.svg?style=flat-square)](https://pypi.org/project/cleanplotlib)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/cleanplotlib.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/cleanplotlib)
 [![PyPi downloads](https://img.shields.io/pypi/dm/cleanplotlib.svg?style=flat-square)](https://pypistats.org/packages/cleanplotlib)
