@@ -42,9 +42,9 @@ jobs:
     # No codecov until
     # https://github.com/codecov/codecov-action/issues/43
     # is solved. :(
-    - name: Submit to codecov
-      uses: codecov/codecov-action@v1.0.6
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
-        flags: ${{ matrix.python-version }}
+    # - name: Submit to codecov
+    #   uses: codecov/codecov-action@v1.0.6
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     file: ./coverage.xml
+    #     flags: ${{ matrix.python-version }}
