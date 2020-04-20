@@ -9,7 +9,7 @@ def test_plot():
     x0 = numpy.linspace(0.0, 3.0, 100)
     y0 = x0 / (x0 + 1)
     y0 += 0.1 * numpy.random.rand(len(y0))
-    cpl.plot(x0, y0, "no balacing")
+    cpl.plot(x0, y0, "no balancing")
 
     x1 = numpy.linspace(0.0, 3.0, 100)
     y1 = 1.5 * x1 / (x1 + 1)
