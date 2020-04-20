@@ -2,6 +2,9 @@ import numpy
 
 import cleanplotlib as cpl
 
+# import matplotlib.pyplot as plt
+# plt.rc('font', family='Helvetica World')
+
 
 def test_plot():
     numpy.random.seed(0)
