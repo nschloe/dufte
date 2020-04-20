@@ -9,19 +9,20 @@ def test_plot():
     x0 = numpy.linspace(0.0, 3.0, 100)
     y0 = x0 / (x0 + 1)
     y0 += 0.1 * numpy.random.rand(len(y0))
-    cpl.plot(x0, y0, "label")
+    cpl.plot(x0, y0, "no balacing")
 
     x1 = numpy.linspace(0.0, 3.0, 100)
     y1 = 1.5 * x1 / (x1 + 1)
     y1 += 0.1 * numpy.random.rand(len(y1))
-    cpl.plot(x1, y1, "long label")
+    cpl.plot(x1, y1, "CRV-27")
 
     x2 = numpy.linspace(0.0, 3.0, 100)
     y2 = 1.6 * x2 / (x2 + 1)
     y2 += 0.1 * numpy.random.rand(len(y2))
-    cpl.plot(x2, y2, "another label")
+    cpl.plot(x2, y2, "CRV27*")
 
     cpl.show()
+    # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
 
 
 def test_multiplot():

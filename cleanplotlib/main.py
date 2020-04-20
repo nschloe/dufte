@@ -37,8 +37,8 @@ def _argsort(seq):
     return sorted(range(len(seq)), key=seq.__getitem__)
 
 
-def show(*args, **kwargs):
-    plt.show()
+show = plt.show
+savefig = plt.savefig
 
 
 # http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/
@@ -87,7 +87,7 @@ def multiplot(
     p = [plt.plot(xx, yy) for xx, yy in zip(x, y)]
 
     fig = plt.gcf()
-    fig.set_size_inches(16 / 9 * height, height)
+    fig.set_size_inches(12 / 9 * height, height)
 
     if min_label_distance == "auto":
         # Make sure that the distance is alpha times the fontsize. This needs to be
