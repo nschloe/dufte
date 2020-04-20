@@ -39,5 +39,11 @@ jobs:
       run: |
         pip install pytest pytest-cov
         pytest --cov cleanplotlib
-    # - name: Submit to codecov
-    #   run: bash <(curl -s https://codecov.io/bash)
+    # No codecov until
+    # https://github.com/codecov/codecov-action/issues/43
+    # is solved. :(
+    - name: Submit to codecov
+      uses: codecov/codecov-action@v1.0.6
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        flags: ${{ matrix.python-version }}

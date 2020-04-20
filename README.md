@@ -37,7 +37,7 @@ cpl.show()
 # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
 ```
 If the plot labels get crowded, `cpl.multiplot` arranged them for you:
-```
+```python
 import cleanplotlib as cpl
 import numpy
 numpy.random.seed(0)
