@@ -12,6 +12,7 @@ This package creates clean and beautiful plots like
 <p align="center">
 <img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
 </p>
+
 ```python
 import cleanplotlib as cpl
 import numpy
