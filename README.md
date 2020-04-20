@@ -7,7 +7,40 @@
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/cleanplotlib.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/cleanplotlib)
 [![PyPi downloads](https://img.shields.io/pypi/dm/cleanplotlib.svg?style=flat-square)](https://pypistats.org/packages/cleanplotlib)
 
-This package creates clean, beautiful matplotlib plots with ease.
+This package creates clean, beautiful matplotlib plots like
+
+<img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
+
+The plot is created with
+```python
+import cleanplotlib as cpl
+import numpy
+
+numpy.random.seed(0)
+
+x0 = numpy.linspace(0.0, 3.0, 100)
+y0 = x0 / (x0 + 1)
+y0 += 0.1 * numpy.random.rand(len(y0))
+cpl.plot(x0, y0, "no balacing")
+
+x1 = numpy.linspace(0.0, 3.0, 100)
+y1 = 1.5 * x1 / (x1 + 1)
+y1 += 0.1 * numpy.random.rand(len(y1))
+cpl.plot(x1, y1, "CRV-27")
+
+x2 = numpy.linspace(0.0, 3.0, 100)
+y2 = 1.6 * x2 / (x2 + 1)
+y2 += 0.1 * numpy.random.rand(len(y2))
+cpl.plot(x2, y2, "CRV27*")
+
+cpl.show()
+# cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
+```
+
+Further reading:
+
+ * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
+
 
 ### Testing
 
