@@ -9,7 +9,9 @@
 
 This package creates clean, beautiful matplotlib plots like
 
+<p align="center">
 <img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
+</p>
 
 The plot is created with
 ```python
