@@ -82,9 +82,17 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
 
 
 def multiplot(
-    x, y, labels, min_label_distance="auto", ygrid=True, fontsize=14, height=5
+    x,
+    y,
+    labels,
+    min_label_distance="auto",
+    ygrid=True,
+    fontsize=14,
+    height=5,
+    alpha=1.4,
 ):
-    p = [plt.plot(xx, yy) for xx, yy in zip(x, y)]
+    n = len(x)
+    p = [plt.plot(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
 
     fig = plt.gcf()
     fig.set_size_inches(12 / 9 * height, height)
@@ -92,7 +100,6 @@ def multiplot(
     if min_label_distance == "auto":
         # Make sure that the distance is alpha times the fontsize. This needs to be
         # translated into axes units.
-        alpha = 1.7
         fig_height = fig.get_size_inches()[0]
         ax = plt.gca()
         ax_pos = ax.get_position()
@@ -120,11 +127,11 @@ def multiplot(
     plt.xticks(fontsize=fontsize)
     plt.yticks(fontsize=fontsize)
 
-    if ygrid:
-        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color="black", alpha=0.3)
-
     # Don't waste space
     plt.autoscale(tight=True)
+
+    if ygrid:
+        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color="black", alpha=0.3)
 
     # Add "legend" entries.
     targets = [yy[-1] for yy in y]

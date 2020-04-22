@@ -22,7 +22,7 @@ def test_plot():
     x2 = numpy.linspace(0.0, 3.0, 100)
     y2 = 1.6 * x2 / (x2 + 1)
     y2 += 0.1 * numpy.random.rand(len(y2))
-    cpl.plot(x2, y2, "CRV27*")
+    cpl.plot(x2, y2, "CRV-27*")
 
     cpl.show()
     # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")

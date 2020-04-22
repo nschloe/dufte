@@ -32,7 +32,7 @@ cpl.plot(x1, y1, "CRV-27")
 x2 = numpy.linspace(0.0, 3.0, 100)
 y2 = 1.6 * x2 / (x2 + 1)
 y2 += 0.1 * numpy.random.rand(len(y2))
-cpl.plot(x2, y2, "CRV27*")
+cpl.plot(x2, y2, "CRV-27*")
 
 cpl.show()
 # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
@@ -58,6 +58,7 @@ Further reading:
 
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
  * [prettyplotlib](https://github.com/olgabot/prettyplotlib)
+ * [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
 
 
 ### Testing
