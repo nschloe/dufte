@@ -32,7 +32,10 @@ mpl.rcParams["axes.prop_cycle"] = mpl.cycler(
     ]
 )
 
-_grid_color = "#666"
+# cleanplotlib is used via perfplot on stackoverflow which has a light (#fffff) and a
+# dark (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And
+# stays in the background, like a grid should.)
+_grid_color = "#969696"
 
 
 # https://stackoverflow.com/a/3382369/353337
