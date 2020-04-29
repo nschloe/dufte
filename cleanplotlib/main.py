@@ -1,3 +1,4 @@
+import math
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
@@ -30,6 +31,8 @@ mpl.rcParams["axes.prop_cycle"] = mpl.cycler(
         "#9edae5",
     ]
 )
+
+_grid_color = "#666"
 
 
 # https://stackoverflow.com/a/3382369/353337
@@ -81,18 +84,37 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     return targets
 
 
+def xlabel(string):
+    plt.xlabel(string, color=_grid_color)
+
+
+def ylabel(string):
+    plt.ylabel(string, color=_grid_color)
+
+
 def multiplot(
     x,
     y,
     labels,
+    logx=False,
+    logy=False,
     min_label_distance="auto",
     ygrid=True,
-    fontsize=14,
+    fontsize=mpl.rcParams["font.size"],
     height=5,
     alpha=1.4,
 ):
+    if logx and logy:
+        plotfun = plt.loglog
+    elif logx:
+        plotfun = plt.semilogx
+    elif logy:
+        plotfun = plt.semilogy
+    else:
+        plotfun = plt.plot
+
     n = len(x)
-    p = [plt.plot(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
+    p = [plotfun(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
 
     fig = plt.gcf()
     fig.set_size_inches(12 / 9 * height, height)
@@ -106,7 +128,10 @@ def multiplot(
         ax_height = ax_pos.y1 - ax_pos.y0
         ax_height_inches = ax_height * fig_height
         ylim = ax.get_ylim()
-        ax_height_ylim = ylim[1] - ylim[0]
+        if logy:
+            ax_height_ylim = math.log10(ylim[1]) - math.log10(ylim[0])
+        else:
+            ax_height_ylim = ylim[1] - ylim[0]
         # 1 pt = 1/72 in
         min_label_distance_inches = fontsize / 72 * alpha
         min_label_distance = (
@@ -120,23 +145,33 @@ def multiplot(
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_visible(False)
 
-    ax.tick_params(length=0)
+    # no minor ticks, no major ticks on the y-axis (we have the grid here)
+    ax.tick_params(which="minor", length=0)
+    ax.tick_params(axis="y", which="major", length=0)
+    ax.tick_params(axis="x", which="major", color=_grid_color)
 
     # > Make sure your axis ticks are large enough to be easily read.
     # > You don't want your viewers squinting to read your plot.
-    plt.xticks(fontsize=fontsize)
-    plt.yticks(fontsize=fontsize)
+    # Wait for
+    # <https://github.com/matplotlib/matplotlib/issues/17259> to have all entities
+    # colored.
+    plt.xticks(fontsize=fontsize, color=_grid_color)
+    plt.yticks(fontsize=fontsize, color=_grid_color)
 
     # Don't waste space
     plt.autoscale(tight=True)
 
     if ygrid:
-        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color="black", alpha=0.3)
+        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color=_grid_color)
 
     # Add "legend" entries.
     targets = [yy[-1] for yy in y]
     idx = _argsort(targets)
+    if logy:
+        targets = [math.log10(t) for t in targets]
     targets = _move_min_distance(sorted(targets), min_label_distance)
+    if logy:
+        targets = [10 ** t for t in targets]
     idx2 = [idx.index(k) for k in range(len(idx))]
     targets = [targets[i] for i in idx2]
 
