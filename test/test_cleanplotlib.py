@@ -2,11 +2,8 @@ import numpy
 
 import cleanplotlib as cpl
 
-# import matplotlib.pyplot as plt
-# plt.rc('font', family='Helvetica World')
 
-
-def test_plot():
+def test_plot(filename=None):
     numpy.random.seed(0)
 
     x0 = numpy.linspace(0.0, 3.0, 100)
@@ -24,8 +21,10 @@ def test_plot():
     y2 += 0.1 * numpy.random.rand(len(y2))
     cpl.plot(x2, y2, "CRV-27*")
 
-    cpl.show()
-    # cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
+    if filename:
+        cpl.savefig(filename, transparent=True, bbox_inches="tight")
+    else:
+        cpl.show()
 
 
 def test_multiplot():
@@ -44,3 +43,10 @@ def test_multiplot():
     )
 
     cpl.show()
+
+
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+
+    plt.rc("font", family="Helvetica World")
+    test_plot("ex1.svg")
