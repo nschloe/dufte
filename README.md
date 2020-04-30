@@ -1,4 +1,7 @@
-# cleanplotlib
+<p align="center">
+  <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="60%"></a>
+  <p align="center">[Tufte](https://en.wikipedia.org/wiki/Edward_Tufte)-style plots [from Berlin](https://www.linguee.com/german-english/translation/dufte.html).</p>
+</p>
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/cleanplotlib/ci?style=flat-square)](https://github.com/nschloe/cleanplotlib/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
