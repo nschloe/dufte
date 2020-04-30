@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="60%"></a>
-  <p align="center">[Tufte](https://en.wikipedia.org/wiki/Edward_Tufte)-style plots [from Berlin](https://www.linguee.com/german-english/translation/dufte.html).</p>
+  <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="40%"></a>
+  <p align="center"><a href="https://en.wikipedia.org/wiki/Edward_Tufte">Tufte</a>-style plots <a href="https://www.linguee.com/german-english/translation/dufte.html">from Berlin</a>.</p>
 </p>
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
