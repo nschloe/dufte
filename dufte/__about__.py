@@ -5,6 +5,6 @@ except ImportError:
     import importlib_metadata as metadata
 
 try:
-    __version__ = metadata.version("cleanplotlib")
+    __version__ = metadata.version("dufte")
 except Exception:
     __version__ = "unknown"

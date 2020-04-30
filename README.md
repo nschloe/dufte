@@ -3,28 +3,28 @@
   <p align="center">[Tufte](https://en.wikipedia.org/wiki/Edward_Tufte)-style plots [from Berlin](https://www.linguee.com/german-english/translation/dufte.html).</p>
 </p>
 
-[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/cleanplotlib/ci?style=flat-square)](https://github.com/nschloe/cleanplotlib/actions?query=workflow%3Aci)
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/cleanplotlib.svg?style=flat-square)](https://pypi.org/pypi/cleanplotlib/)
-[![PyPi Version](https://img.shields.io/pypi/v/cleanplotlib.svg?style=flat-square)](https://pypi.org/project/cleanplotlib)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/cleanplotlib.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/cleanplotlib)
-[![PyPi downloads](https://img.shields.io/pypi/dm/cleanplotlib.svg?style=flat-square)](https://pypistats.org/packages/cleanplotlib)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/dufte.svg?style=flat-square)](https://pypi.org/pypi/dufte/)
+[![PyPi Version](https://img.shields.io/pypi/v/dufte.svg?style=flat-square)](https://pypi.org/project/dufte)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
+[![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
 
 This package creates clean and beautiful plots like
 
 <p align="center">
-<img src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
+<img src="https://nschloe.github.io/dufte/ex1.svg" width="70%">
 </p>
 
-Simply select the `"cleanplotlib"` style and, if desired, call `cpl.legend()` to get
+Simply select the `"dufte"` style and, if desired, call `dufte.legend()` to get
 line annotations on the right.
 
 ```python
 import matplotlib.pyplot as plt
-import cleanplotlib as cpl
+import dufte
 import numpy
 
-plt.style.use("cleanplotlib")
+plt.style.use("dufte")
 
 numpy.random.seed(0)
 
@@ -43,7 +43,7 @@ y2 = 1.6 * x2 / (x2 + 1)
 y2 += 0.1 * numpy.random.rand(len(y2))
 plt.plot(x2, y2, "CRV-27*")
 
-cpl.legend()
+dufte.legend()
 
 plt.show()
 ```
@@ -56,7 +56,7 @@ Further reading:
 
 ### Testing
 
-To run the cleanplotlib unit tests, check out this repository and type
+To run the dufte unit tests, check out this repository and type
 ```
 pytest
 ```

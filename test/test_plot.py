@@ -3,12 +3,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy
 
-import cleanplotlib as cpl
+import dufte
 
 
 def test_plot(filename=None):
     this_dir = Path(__file__).resolve().parent
-    style_file = str(this_dir.parent / "cleanplotlib/cleanplotlib.mplstyle")
+    style_file = str(this_dir.parent / "dufte/dufte.mplstyle")
     plt.style.use(style_file)
 
     numpy.random.seed(0)
@@ -30,31 +30,12 @@ def test_plot(filename=None):
     # plt.xlabel("x label")
     # plt.ylabel("y label")
     # plt.title("title")
-    cpl.legend()
+    dufte.legend()
 
     if filename:
         plt.savefig(filename, transparent=True, bbox_inches="tight")
     else:
         plt.show()
-
-
-# def test_multiplot():
-#     plt.style.use(str(this_dir.parent / "cleanplotlib/cleanplotlib.mplstyle"))
-#     numpy.random.seed(0)
-#
-#     x = numpy.linspace(0.0, 3.0, 100)
-#     y0 = x / (x + 1)
-#     # y0 += 0.1 * numpy.random.rand(len(y0))
-#     y1 = 1.01 * x / (x + 1)
-#     # y1 += 0.1 * numpy.random.rand(len(y1))
-#     y2 = 1.03 * x / (x + 1)
-#     # y2 += 0.1 * numpy.random.rand(len(y2))
-#
-#     cpl.multiplot(
-#         [x, x, x], [y0, y1, y2], ["label", "long label", "another long label"]
-#     )
-#
-#     cpl.show()
 
 
 if __name__ == "__main__":
