@@ -1,58 +1,51 @@
-# cleanplotlib
+<p align="center">
+  <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="60%"></a>
+  <p align="center">[Tufte](https://en.wikipedia.org/wiki/Edward_Tufte)-style plots [from Berlin](https://www.linguee.com/german-english/translation/dufte.html).</p>
+</p>
 
-[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/cleanplotlib/ci?style=flat-square)](https://github.com/nschloe/cleanplotlib/actions?query=workflow%3Aci)
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/cleanplotlib.svg?style=flat-square)](https://pypi.org/pypi/cleanplotlib/)
-[![PyPi Version](https://img.shields.io/pypi/v/cleanplotlib.svg?style=flat-square)](https://pypi.org/project/cleanplotlib)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/cleanplotlib.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/cleanplotlib)
-[![PyPi downloads](https://img.shields.io/pypi/dm/cleanplotlib.svg?style=flat-square)](https://pypistats.org/packages/cleanplotlib)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/dufte.svg?style=flat-square)](https://pypi.org/pypi/dufte/)
+[![PyPi Version](https://img.shields.io/pypi/v/dufte.svg?style=flat-square)](https://pypi.org/project/dufte)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
+[![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
 
 This package creates clean and beautiful plots like
 
 <p align="center">
-<img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
+<img src="https://nschloe.github.io/dufte/ex1.svg" width="70%">
 </p>
 
+Simply select the `"dufte"` style and, if desired, call `dufte.legend()` to get
+line annotations on the right.
+
 ```python
-import cleanplotlib as cpl
+import matplotlib.pyplot as plt
+import dufte
 import numpy
+
+plt.style.use("dufte")
 
 numpy.random.seed(0)
 
 x0 = numpy.linspace(0.0, 3.0, 100)
 y0 = x0 / (x0 + 1)
 y0 += 0.1 * numpy.random.rand(len(y0))
-cpl.plot(x0, y0, "no balacing")
+plt.plot(x0, y0, "no balacing")
 
 x1 = numpy.linspace(0.0, 3.0, 100)
 y1 = 1.5 * x1 / (x1 + 1)
 y1 += 0.1 * numpy.random.rand(len(y1))
-cpl.plot(x1, y1, "CRV-27")
+plt.plot(x1, y1, "CRV-27")
 
 x2 = numpy.linspace(0.0, 3.0, 100)
 y2 = 1.6 * x2 / (x2 + 1)
 y2 += 0.1 * numpy.random.rand(len(y2))
-cpl.plot(x2, y2, "CRV-27*")
+plt.plot(x2, y2, "CRV-27*")
 
-cpl.show()
-# cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
-```
-If the plot labels get crowded, `cpl.multiplot` arranged them for you:
-```python
-import cleanplotlib as cpl
-import numpy
-numpy.random.seed(0)
+dufte.legend()
 
-x = numpy.linspace(0.0, 3.0, 100)
-y0 = x / (x + 1)
-y1 = 1.01 * x / (x + 1)
-y2 = 1.03 * x / (x + 1)
-
-cpl.multiplot(
-    [x, x, x], [y0, y1, y2], ["no balancing", "CRV27", "CRV27*"]
-)
-
-cpl.show()
+plt.show()
 ```
 Further reading:
 
@@ -63,7 +56,7 @@ Further reading:
 
 ### Testing
 
-To run the cleanplotlib unit tests, check out this repository and type
+To run the dufte unit tests, check out this repository and type
 ```
 pytest
 ```

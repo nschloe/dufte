@@ -1,4 +1,4 @@
-# cleanplotlib Code of Conduct
+# dufte Code of Conduct
 
 ## Our Pledge
 
