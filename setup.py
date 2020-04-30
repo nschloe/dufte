@@ -8,7 +8,7 @@ if __name__ == "__main__":
         data_files=[
             (
                 "{}/.config/matplotlib/stylelib/".format(os.environ["HOME"]),
-                ["config/dufte.config"],
+                ["dufte/dufte.mplstyle"],
             )
         ],
     )
