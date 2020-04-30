@@ -10,49 +10,39 @@
 This package creates clean and beautiful plots like
 
 <p align="center">
-<img alt="dmsh" src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
+<img src="https://nschloe.github.io/cleanplotlib/ex1.svg" width="70%">
 </p>
 
+Simply select the `"cleanplotlib"` style and, if desired, call `cpl.legend()` to get
+line annotations on the right.
+
 ```python
+import matplotlib.pyplot as plt
 import cleanplotlib as cpl
 import numpy
+
+plt.style.use("cleanplotlib")
 
 numpy.random.seed(0)
 
 x0 = numpy.linspace(0.0, 3.0, 100)
 y0 = x0 / (x0 + 1)
 y0 += 0.1 * numpy.random.rand(len(y0))
-cpl.plot(x0, y0, "no balacing")
+plt.plot(x0, y0, "no balacing")
 
 x1 = numpy.linspace(0.0, 3.0, 100)
 y1 = 1.5 * x1 / (x1 + 1)
 y1 += 0.1 * numpy.random.rand(len(y1))
-cpl.plot(x1, y1, "CRV-27")
+plt.plot(x1, y1, "CRV-27")
 
 x2 = numpy.linspace(0.0, 3.0, 100)
 y2 = 1.6 * x2 / (x2 + 1)
 y2 += 0.1 * numpy.random.rand(len(y2))
-cpl.plot(x2, y2, "CRV-27*")
+plt.plot(x2, y2, "CRV-27*")
 
-cpl.show()
-# cpl.savefig("ex1.svg", transparent=True, bbox_inches="tight")
-```
-If the plot labels get crowded, `cpl.multiplot` arranged them for you:
-```python
-import cleanplotlib as cpl
-import numpy
-numpy.random.seed(0)
+cpl.legend()
 
-x = numpy.linspace(0.0, 3.0, 100)
-y0 = x / (x + 1)
-y1 = 1.01 * x / (x + 1)
-y2 = 1.03 * x / (x + 1)
-
-cpl.multiplot(
-    [x, x, x], [y0, y1, y2], ["no balancing", "CRV27", "CRV27*"]
-)
-
-cpl.show()
+plt.show()
 ```
 Further reading:
 
