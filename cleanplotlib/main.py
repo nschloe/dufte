@@ -151,13 +151,11 @@ def multiplot(
     # no minor ticks, no major ticks on the y-axis (we have the grid here)
     ax.tick_params(which="minor", length=0)
     ax.tick_params(axis="y", which="major", length=0)
-    ax.tick_params(axis="x", which="major", color=_grid_color)
+    ax.tick_params(axis="x", which="major", color=_grid_color, labelcolor=_grid_color)
+    ax.tick_params(axis="y", which="major", labelcolor=_grid_color)
 
     # > Make sure your axis ticks are large enough to be easily read.
     # > You don't want your viewers squinting to read your plot.
-    # Wait for
-    # <https://github.com/matplotlib/matplotlib/issues/17259> to have all entities
-    # colored.
     plt.xticks(fontsize=fontsize, color=_grid_color)
     plt.yticks(fontsize=fontsize, color=_grid_color)
 
