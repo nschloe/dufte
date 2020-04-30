@@ -1,4 +1,4 @@
 from .__about__ import __version__
-from .main import multiplot, plot, savefig, show, xlabel, ylabel
+from .main import legend
 
-__all__ = ["__version__", "multiplot", "plot", "show", "savefig", "xlabel", "ylabel"]
+__all__ = ["__version__", "legend"]

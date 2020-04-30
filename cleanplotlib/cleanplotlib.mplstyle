@@ -1,0 +1,27 @@
+font.size: 14
+
+# cleanplotlib is used via perfplot on stackoverflow which has a light (#fffff) and a
+# dark (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And
+# stays in the background, like a grid should.)
+text.color : 969696
+
+axes.labelcolor: 969696
+
+axes.spines.left   : False
+axes.spines.bottom : False
+axes.spines.top    : False
+axes.spines.right  : False
+
+ytick.left : False
+ytick.right: False
+ytick.color: 969696
+
+xtick.minor.visible: False
+xtick.color: 969696
+
+axes.grid: True
+axes.grid.axis: y
+grid.color     : 969696
+grid.linewidth : 0.5
+# grid.linestyle : --
+# grid.dashes : 10, 10

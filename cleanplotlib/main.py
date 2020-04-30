@@ -6,36 +6,33 @@ import matplotlib.pyplot as plt
 # <https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category20>,
 # which basically adds one pale color version of each color in cat10.
 # Change the order such that the first 10 are cat10.
-mpl.rcParams["axes.prop_cycle"] = mpl.cycler(
-    color=[
-        "#1f77b4",
-        "#ff7f0e",
-        "#2ca02c",
-        "#d62728",
-        "#9467bd",
-        "#8c564b",
-        "#e377c2",
-        "#7f7f7f",
-        "#bcbd22",
-        "#17becf",
-        # pale variants:
-        "#aec7e8",
-        "#ffbb78",
-        "#98df8a",
-        "#ff9896",
-        "#c5b0d5",
-        "#c49c94",
-        "#f7b6d2",
-        "#c7c7c7",
-        "#dbdb8d",
-        "#9edae5",
-    ]
-)
+# mpl.rcParams["axes.prop_cycle"] = mpl.cycler(
+#     color=[
+#         "#1f77b4",
+#         "#ff7f0e",
+#         "#2ca02c",
+#         "#d62728",
+#         "#9467bd",
+#         "#8c564b",
+#         "#e377c2",
+#         "#7f7f7f",
+#         "#bcbd22",
+#         "#17becf",
+#         # pale variants:
+#         "#aec7e8",
+#         "#ffbb78",
+#         "#98df8a",
+#         "#ff9896",
+#         "#c5b0d5",
+#         "#c49c94",
+#         "#f7b6d2",
+#         "#c7c7c7",
+#         "#dbdb8d",
+#         "#9edae5",
+#     ]
+# )
 
-# cleanplotlib is used via perfplot on stackoverflow which has a light (#fffff) and a
-# dark (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And
-# stays in the background, like a grid should.)
-_grid_color = "#969696"
+# _grid_color = "#969696"
 
 
 # https://stackoverflow.com/a/3382369/353337
@@ -43,13 +40,9 @@ def _argsort(seq):
     return sorted(range(len(seq)), key=seq.__getitem__)
 
 
-show = plt.show
-savefig = plt.savefig
-
-
 # http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/
-def plot(x, y, label, ygrid=True, fontsize=14, height=5):
-    multiplot([x], [y], [label], ygrid=ygrid, fontsize=fontsize, height=height)
+# def plot(x, y, label, ygrid=True, fontsize=14, height=5):
+#     multiplot([x], [y], [label], ygrid=ygrid, fontsize=fontsize, height=height)
 
 
 def _move_min_distance(targets, min_distance, eps=1.0e-5):
@@ -87,40 +80,38 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     return targets
 
 
-def xlabel(string):
-    plt.xlabel(string, color=_grid_color)
-
-
-def ylabel(string):
-    plt.ylabel(string, color=_grid_color)
-
-
-def multiplot(
-    x,
-    y,
-    labels,
-    logx=False,
-    logy=False,
+def legend(
+    ax=None,
     min_label_distance="auto",
-    ygrid=True,
-    fontsize=mpl.rcParams["font.size"],
-    height=5,
-    alpha=1.4,
+    alpha=1.4
 ):
-    if logx and logy:
-        plotfun = plt.loglog
-    elif logx:
-        plotfun = plt.semilogx
-    elif logy:
-        plotfun = plt.semilogy
-    else:
-        plotfun = plt.plot
+    ax = ax or plt.gca()
 
-    n = len(x)
-    p = [plotfun(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
+    # Don't waste space
+    # TODO put this in the style file
+    # <https://github.com/matplotlib/matplotlib/issues/17274>
+    plt.autoscale(tight=True)
+    # same
+    # <https://github.com/matplotlib/matplotlib/issues/17273>
+    plt.grid(axis="y", dashes=(10, 10))
+
+    # if logx and logy:
+    #     plotfun = plt.loglog
+    # elif logx:
+    #     plotfun = plt.semilogx
+    # elif logy:
+    #     plotfun = plt.semilogy
+    # else:
+    #     plotfun = plt.plot
+
+    # n = len(x)
+    # p = [plotfun(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
 
     fig = plt.gcf()
-    fig.set_size_inches(12 / 9 * height, height)
+    # fig.set_size_inches(12 / 9 * height, height)
+
+    logy = ax.get_yscale() == "log"
+    fontsize = mpl.rcParams["font.size"]
 
     if min_label_distance == "auto":
         # Make sure that the distance is alpha times the fontsize. This needs to be
@@ -141,29 +132,13 @@ def multiplot(
             min_label_distance_inches / ax_height_inches * ax_height_ylim
         )
 
-    # > Remove the plot frame lines. They are unnecessary chartjunk.
-    ax = plt.gca()
-    ax.spines["top"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_visible(False)
+    # find all Line2D objects
+    lines = []
+    for child in ax.get_children():
+        if isinstance(child, mpl.lines.Line2D):
+            lines.append(child)
 
-    # no minor ticks, no major ticks on the y-axis (we have the grid here)
-    ax.tick_params(which="minor", length=0)
-    ax.tick_params(axis="y", which="major", length=0)
-    ax.tick_params(axis="x", which="major", color=_grid_color, labelcolor=_grid_color)
-    ax.tick_params(axis="y", which="major", labelcolor=_grid_color)
-
-    # > Make sure your axis ticks are large enough to be easily read.
-    # > You don't want your viewers squinting to read your plot.
-    plt.xticks(fontsize=fontsize, color=_grid_color)
-    plt.yticks(fontsize=fontsize, color=_grid_color)
-
-    # Don't waste space
-    plt.autoscale(tight=True)
-
-    if ygrid:
-        plt.grid(axis="y", dashes=(10, 10), lw=0.5, color=_grid_color)
+    exit(1)
 
     # Add "legend" entries.
     targets = [yy[-1] for yy in y]
@@ -176,13 +151,13 @@ def multiplot(
     idx2 = [idx.index(k) for k in range(len(idx))]
     targets = [targets[i] for i in idx2]
 
-    xlim0, xlim1 = ax.get_xlim()
-    for yy, label, t, pp in zip(y, labels, targets, p):
-        plt.text(
-            xlim1 + (xlim1 - xlim0) / 100,
-            t,
-            label,
-            fontsize=fontsize,
-            verticalalignment="center",
-            color=pp[0].get_color(),
-        )
+    # xlim0, xlim1 = ax.get_xlim()
+    # for yy, label, t, pp in zip(y, labels, targets, p):
+    #     plt.text(
+    #         xlim1 + (xlim1 - xlim0) / 100,
+    #         t,
+    #         label,
+    #         fontsize=fontsize,
+    #         verticalalignment="center",
+    #         color=pp[0].get_color(),
+    #     )
