@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import matplotlib.pyplot as plt
 import numpy
 
@@ -7,9 +5,7 @@ import dufte
 
 
 def test_plot(filename=None):
-    this_dir = Path(__file__).resolve().parent
-    style_file = str(this_dir.parent / "dufte/dufte.mplstyle")
-    plt.style.use(style_file)
+    plt.style.use(dufte.style)
 
     numpy.random.seed(0)
     x0 = numpy.linspace(0.0, 3.0, 100)
@@ -39,6 +35,5 @@ def test_plot(filename=None):
 
 
 if __name__ == "__main__":
-    plt.rc("font", family="Helvetica World")
     # test_plot("ex1.svg")
     test_plot()
