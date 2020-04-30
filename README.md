@@ -16,7 +16,7 @@ This package creates clean and beautiful plots like
 <img src="https://nschloe.github.io/dufte/ex1.svg" width="70%">
 </p>
 
-Simply select the `"dufte"` style and, if desired, call `dufte.legend()` to get
+Simply select the `dufte` style and, if desired, call `dufte.legend()` to get
 line annotations on the right.
 
 ```python
@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import dufte
 import numpy
 
-plt.style.use("dufte")
+plt.style.use(dufte.style)
 
 numpy.random.seed(0)
 

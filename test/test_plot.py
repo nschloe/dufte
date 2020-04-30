@@ -5,11 +5,7 @@ import dufte
 
 
 def test_plot(filename=None):
-    # from pathlib import Path
-    # this_dir = Path(__file__).resolve().parent
-    # style_file = str(this_dir.parent / "dufte/dufte.mplstyle")
-    # plt.style.use(style_file)
-    plt.style.use("dufte")
+    plt.style.use(dufte.style)
 
     numpy.random.seed(0)
     x0 = numpy.linspace(0.0, 3.0, 100)

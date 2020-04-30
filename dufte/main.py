@@ -3,6 +3,61 @@ import math
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
+# dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
+# (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
+# in the background, like a grid should.)
+_color = "969696"
+
+style = {
+    "font.size": 14,
+    "text.color": _color,
+    "axes.labelcolor": _color,
+    "axes.spines.left": False,
+    "axes.spines.bottom": False,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "ytick.left": False,
+    "ytick.right": False,
+    "ytick.color": _color,
+    "xtick.minor.visible": False,
+    "xtick.color": _color,
+    "axes.grid": True,
+    "axes.grid.axis": "y",
+    "grid.color": _color,
+    "grid.linewidth": 0.5,
+    # "grid.linestyle" : --
+    # "grid.dashes" : 10, 10
+    # mpl uses category10 by default, we use cat20,
+    # <https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category20>,
+    # which basically adds one pale color version of each color in cat10.  Change
+    # the order such that the first 10 are cat10.
+    "axes.prop_cycle": mpl.cycler(
+        color=[
+            "1f77b4",
+            "ff7f0e",
+            "2ca02c",
+            "d62728",
+            "9467bd",
+            "8c564b",
+            "e377c2",
+            "7f7f7f",
+            "bcbd22",
+            "17becf",
+            # pale variants:
+            "aec7e8",
+            "ffbb78",
+            "98df8a",
+            "ff9896",
+            "c5b0d5",
+            "c49c94",
+            "f7b6d2",
+            "c7c7c7",
+            "dbdb8d",
+            "9edae5",
+        ],
+    ),
+}
+
 
 # https://stackoverflow.com/a/3382369/353337
 def _argsort(seq):
