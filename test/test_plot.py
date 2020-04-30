@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import matplotlib.pyplot as plt
 import numpy
 
@@ -7,9 +5,11 @@ import dufte
 
 
 def test_plot(filename=None):
-    this_dir = Path(__file__).resolve().parent
-    style_file = str(this_dir.parent / "dufte/dufte.mplstyle")
-    plt.style.use(style_file)
+    # from pathlib import Path
+    # this_dir = Path(__file__).resolve().parent
+    # style_file = str(this_dir.parent / "dufte/dufte.mplstyle")
+    # plt.style.use(style_file)
+    plt.style.use("dufte")
 
     numpy.random.seed(0)
     x0 = numpy.linspace(0.0, 3.0, 100)
