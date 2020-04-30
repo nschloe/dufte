@@ -1,4 +1,5 @@
 import math
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
@@ -32,17 +33,10 @@ import matplotlib.pyplot as plt
 #     ]
 # )
 
-# _grid_color = "#969696"
-
 
 # https://stackoverflow.com/a/3382369/353337
 def _argsort(seq):
     return sorted(range(len(seq)), key=seq.__getitem__)
-
-
-# http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/
-# def plot(x, y, label, ygrid=True, fontsize=14, height=5):
-#     multiplot([x], [y], [label], ygrid=ygrid, fontsize=fontsize, height=height)
 
 
 def _move_min_distance(targets, min_distance, eps=1.0e-5):
@@ -53,7 +47,9 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     here, see <https://math.stackexchange.com/q/3633826/36678>. This algorithm is very
     simplistic.
     """
-    assert targets == sorted(targets)
+    idx = _argsort(targets)
+    targets == sorted(targets)
+
     while True:
         # Form groups of targets that must be moved together.
         groups = [[targets[0]]]
@@ -77,16 +73,13 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
                 a = targets[-1] - pos[0] - eps
             new_pos = [p + a for p in pos]
             targets += new_pos
+
+    idx2 = [idx.index(k) for k in range(len(idx))]
+    targets = [targets[i] for i in idx2]
     return targets
 
 
-def legend(
-    ax=None,
-    min_label_distance="auto",
-    alpha=1.4
-):
-    ax = ax or plt.gca()
-
+def _apply_styles():
     # Don't waste space
     # TODO put this in the style file
     # <https://github.com/matplotlib/matplotlib/issues/17274>
@@ -95,23 +88,16 @@ def legend(
     # <https://github.com/matplotlib/matplotlib/issues/17273>
     plt.grid(axis="y", dashes=(10, 10))
 
-    # if logx and logy:
-    #     plotfun = plt.loglog
-    # elif logx:
-    #     plotfun = plt.semilogx
-    # elif logy:
-    #     plotfun = plt.semilogy
-    # else:
-    #     plotfun = plt.plot
 
-    # n = len(x)
-    # p = [plotfun(xx, yy, zorder=n - k) for k, (xx, yy) in enumerate(zip(x, y))]
+def legend(ax=None, min_label_distance="auto", alpha=1.4):
+    _apply_styles()
+
+    ax = ax or plt.gca()
 
     fig = plt.gcf()
     # fig.set_size_inches(12 / 9 * height, height)
 
     logy = ax.get_yscale() == "log"
-    fontsize = mpl.rcParams["font.size"]
 
     if min_label_distance == "auto":
         # Make sure that the distance is alpha times the fontsize. This needs to be
@@ -127,6 +113,7 @@ def legend(
         else:
             ax_height_ylim = ylim[1] - ylim[0]
         # 1 pt = 1/72 in
+        fontsize = mpl.rcParams["font.size"]
         min_label_distance_inches = fontsize / 72 * alpha
         min_label_distance = (
             min_label_distance_inches / ax_height_inches * ax_height_ylim
@@ -138,26 +125,23 @@ def legend(
         if isinstance(child, mpl.lines.Line2D):
             lines.append(child)
 
-    exit(1)
-
     # Add "legend" entries.
-    targets = [yy[-1] for yy in y]
-    idx = _argsort(targets)
+    targets = [line.get_ydata()[-1] for line in lines]
     if logy:
         targets = [math.log10(t) for t in targets]
-    targets = _move_min_distance(sorted(targets), min_label_distance)
+    targets = _move_min_distance(targets, min_label_distance)
     if logy:
         targets = [10 ** t for t in targets]
-    idx2 = [idx.index(k) for k in range(len(idx))]
-    targets = [targets[i] for i in idx2]
 
-    # xlim0, xlim1 = ax.get_xlim()
-    # for yy, label, t, pp in zip(y, labels, targets, p):
-    #     plt.text(
-    #         xlim1 + (xlim1 - xlim0) / 100,
-    #         t,
-    #         label,
-    #         fontsize=fontsize,
-    #         verticalalignment="center",
-    #         color=pp[0].get_color(),
-    #     )
+    labels = [line.get_label() for line in lines]
+    colors = [line.get_color() for line in lines]
+
+    xlim0, xlim1 = ax.get_xlim()
+    for label, t, color in zip(labels, targets, colors):
+        plt.text(
+            xlim1 + (xlim1 - xlim0) / 100,
+            t,
+            label,
+            verticalalignment="center",
+            color=color,
+        )

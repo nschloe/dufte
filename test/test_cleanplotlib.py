@@ -1,14 +1,14 @@
 from pathlib import Path
-import numpy
 
 import matplotlib.pyplot as plt
+import numpy
+
 import cleanplotlib as cpl
 
 
 def test_plot(filename=None):
     this_dir = Path(__file__).resolve().parent
     style_file = str(this_dir.parent / "cleanplotlib/cleanplotlib.mplstyle")
-    print(style_file)
     plt.style.use(style_file)
 
     numpy.random.seed(0)
