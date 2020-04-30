@@ -35,6 +35,5 @@ def test_plot(filename=None):
 
 
 if __name__ == "__main__":
-    plt.rc("font", family="Helvetica World")
     # test_plot("ex1.svg")
     test_plot()
