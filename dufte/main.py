@@ -26,7 +26,7 @@ style = {
     "axes.grid.axis": "y",
     "grid.color": _color,
     "grid.linewidth": 0.5,
-    "grid.linestyle" : (10, 10),
+    "grid.linestyle": (10, 10),
     "axes.xmargin": 0,
     "axes.ymargin": 0,
     # mpl uses category10 by default, we use cat20,
