@@ -26,8 +26,9 @@ style = {
     "axes.grid.axis": "y",
     "grid.color": _color,
     "grid.linewidth": 0.5,
-    # "grid.linestyle" : --
-    # "grid.dashes" : 10, 10
+    "grid.linestyle": (10, 10),
+    "axes.xmargin": 0,
+    "axes.ymargin": 0,
     # mpl uses category10 by default, we use cat20,
     # <https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category20>,
     # which basically adds one pale color version of each color in cat10.  Change
@@ -74,7 +75,7 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     simplistic.
     """
     idx = _argsort(targets)
-    targets == sorted(targets)
+    targets = sorted(targets)
 
     while True:
         # Form groups of targets that must be moved together.
@@ -105,19 +106,7 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     return targets
 
 
-def _apply_styles():
-    # Don't waste space
-    # TODO put this in the style file
-    # <https://github.com/matplotlib/matplotlib/issues/17274>
-    plt.autoscale(tight=True)
-    # same
-    # <https://github.com/matplotlib/matplotlib/issues/17273>
-    plt.grid(axis="y", dashes=(10, 10))
-
-
 def legend(ax=None, min_label_distance="auto", alpha=1.4):
-    _apply_styles()
-
     ax = ax or plt.gca()
 
     fig = plt.gcf()
