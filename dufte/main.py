@@ -75,7 +75,7 @@ def _move_min_distance(targets, min_distance, eps=1.0e-5):
     simplistic.
     """
     idx = _argsort(targets)
-    targets == sorted(targets)
+    targets = sorted(targets)
 
     while True:
         # Form groups of targets that must be moved together.
