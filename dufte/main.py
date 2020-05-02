@@ -6,6 +6,11 @@ import matplotlib.pyplot as plt
 # dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
 # (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
 # in the background, like a grid should.)
+#
+# Twitter background:
+#   "Default": #ffffff
+#   "Dim": #15202b
+#   "Lights out": #000000
 _color = "969696"
 
 style = {
@@ -25,8 +30,8 @@ style = {
     "axes.grid": True,
     "axes.grid.axis": "y",
     "grid.color": _color,
-    "grid.linewidth": 0.5,
-    "grid.linestyle": (10, 10),
+    # Choose the line width such that it's very subtle, but still serves as a guide.
+    "grid.linewidth": 0.2,
     "axes.xmargin": 0,
     "axes.ymargin": 0,
     # mpl uses category10 by default, we use cat20,
