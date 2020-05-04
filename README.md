@@ -12,9 +12,8 @@
 
 This package creates clean and beautiful plots like
 
-<p align="center">
-<img src="https://nschloe.github.io/dufte/ex1.svg" width="70%">
-</p>
+<img src="https://nschloe.github.io/dufte/ex1-light.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dark.svg">
+:----:|:----:|
 
 Simply select the `dufte` style and, if desired, call `dufte.legend()` to get
 line annotations on the right.
