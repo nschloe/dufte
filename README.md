@@ -10,11 +10,10 @@
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
 [![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
 
-This package creates clean and beautiful plots like
+This package creates clean and beautiful plots that work on light and dark backgrounds.
 
-<p align="center">
-<img src="https://nschloe.github.io/dufte/ex1.svg" width="70%">
-</p>
+<img src="https://nschloe.github.io/dufte/ex1-light.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dark.svg">
+:----:|:----:|
 
 Simply select the `dufte` style and, if desired, call `dufte.legend()` to get
 line annotations on the right.

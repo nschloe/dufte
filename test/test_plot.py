@@ -28,12 +28,20 @@ def test_plot(filename=None):
     # plt.title("title")
     dufte.legend()
 
+    # plt.gca().set_facecolor('#2d2d2d')
+    # plt.gcf().patch.set_facecolor('#2d2d2d')
+
     if filename:
-        plt.savefig(filename, transparent=True, bbox_inches="tight")
+        # <https://github.com/matplotlib/matplotlib/issues/17321>
+        plt.savefig(
+            filename,
+            transparent=True,
+            bbox_inches="tight",
+            facecolor=plt.gcf().get_facecolor(),
+        )
     else:
         plt.show()
 
 
 if __name__ == "__main__":
-    # test_plot("ex1.svg")
-    test_plot()
+    test_plot("ex1-light.svg")
