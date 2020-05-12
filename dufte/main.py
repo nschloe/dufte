@@ -11,27 +11,30 @@ import matplotlib.pyplot as plt
 #   "Default": #ffffff
 #   "Dim": #15202b
 #   "Lights out": #000000
-_color = "969696"
+_gray = "969696"
+_stroke_width = 0.3
 
 style = {
     "font.size": 14,
-    "text.color": _color,
-    "axes.labelcolor": _color,
+    "text.color": _gray,
+    "axes.labelcolor": _gray,
     "axes.spines.left": False,
     "axes.spines.bottom": False,
     "axes.spines.top": False,
     "axes.spines.right": False,
-    "ytick.left": False,
+    "ytick.minor.left": False,
     "ytick.right": False,
-    "ytick.color": _color,
+    "ytick.color": _gray,
+    "ytick.major.width": _stroke_width,
     "xtick.minor.top": False,
     "xtick.minor.bottom": False,
-    "xtick.color": _color,
+    "xtick.color": _gray,
+    "xtick.major.width": _stroke_width,
     "axes.grid": True,
     "axes.grid.axis": "y",
-    "grid.color": _color,
+    "grid.color": _gray,
     # Choose the line width such that it's very subtle, but still serves as a guide.
-    "grid.linewidth": 0.2,
+    "grid.linewidth": _stroke_width,
     "axes.xmargin": 0,
     "axes.ymargin": 0,
     # mpl uses category10 by default, we use cat20,
