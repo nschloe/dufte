@@ -4,7 +4,7 @@ import numpy
 import dufte
 
 
-def test_plot(filename=None):
+def test_plot(filename=None, light=True):
     plt.style.use(dufte.style)
 
     numpy.random.seed(0)
@@ -28,8 +28,9 @@ def test_plot(filename=None):
     # plt.title("title")
     dufte.legend()
 
-    # plt.gca().set_facecolor('#2d2d2d')
-    # plt.gcf().patch.set_facecolor('#2d2d2d')
+    if not light:
+        plt.gca().set_facecolor("#2d2d2d")
+        plt.gcf().patch.set_facecolor("#2d2d2d")
 
     if filename:
         # <https://github.com/matplotlib/matplotlib/issues/17321>
@@ -45,3 +46,4 @@ def test_plot(filename=None):
 
 if __name__ == "__main__":
     test_plot("ex1-light.svg")
+    # test_plot("ex1-dark.svg", light=False)
