@@ -4,6 +4,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy
 
+from .optimize import nnls
+
 # dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
 # (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
 # in the background, like a grid should.)
@@ -78,10 +80,9 @@ def _argsort(seq):
 def _move_min_distance(targets, min_distance):
     """Move the targets such that they are close to their original positions, but keep
     min_distance apart.
-    """
-    # https://math.stackexchange.com/a/3705240/36678
-    import scipy.optimize
 
+    https://math.stackexchange.com/a/3705240/36678
+    """
     # sort targets
     idx = _argsort(targets)
     targets = sorted(targets)
@@ -93,12 +94,15 @@ def _move_min_distance(targets, min_distance):
     for i in range(n):
         b[i] -= x0_min + i * min_distance
 
-    out, _ = scipy.optimize.nnls(A, b)
+    # import scipy.optimize
+    # out, _ = scipy.optimize.nnls(A, b)
+
+    out = nnls(A, b)
 
     sol = numpy.empty(n)
     sol[0] = out[0] + x0_min
     for k in range(1, n):
-        sol[k] = sol[0] + sum(out[1:k + 1]) + k * min_distance
+        sol[k] = sol[0] + sum(out[1 : k + 1]) + k * min_distance
 
     # reorder
     idx2 = [idx.index(k) for k in range(len(idx))]
