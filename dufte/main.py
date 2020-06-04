@@ -2,6 +2,9 @@ import math
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import numpy
+
+from .optimize import nnls
 
 # dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
 # (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
@@ -13,6 +16,8 @@ import matplotlib.pyplot as plt
 #   "Lights out": #000000
 _gray = "969696"
 _stroke_width = 0.3
+# make the xticks slightly wider to make them easier to see
+_xtick_width = 0.4
 
 style = {
     "font.size": 14,
@@ -29,7 +34,7 @@ style = {
     "xtick.minor.top": False,
     "xtick.minor.bottom": False,
     "xtick.color": _gray,
-    "xtick.major.width": _stroke_width,
+    "xtick.major.width": _xtick_width,
     "axes.grid": True,
     "axes.grid.axis": "y",
     "grid.color": _gray,
@@ -74,62 +79,55 @@ def _argsort(seq):
     return sorted(range(len(seq)), key=seq.__getitem__)
 
 
-def _move_min_distance(targets, min_distance, eps=1.0e-5):
+def _move_min_distance(targets, min_distance):
     """Move the targets such that they are close to their original positions, but keep
     min_distance apart.
 
-    We actually need to solve a convex optimization problem with nonlinear constraints
-    here, see <https://math.stackexchange.com/q/3633826/36678>. This algorithm is very
-    simplistic.
+    https://math.stackexchange.com/a/3705240/36678
     """
+    # sort targets
     idx = _argsort(targets)
     targets = sorted(targets)
 
-    while True:
-        # Form groups of targets that must be moved together.
-        groups = [[targets[0]]]
-        for t in targets[1:]:
-            if abs(t - groups[-1][-1]) > min_distance - eps:
-                groups.append([])
-            groups[-1].append(t)
+    n = len(targets)
+    x0_min = targets[0] - n * min_distance
+    A = numpy.tril(numpy.ones([n, n]))
+    b = targets.copy()
+    for i in range(n):
+        b[i] -= x0_min + i * min_distance
 
-        if all(len(g) == 1 for g in groups):
-            break
+    # import scipy.optimize
+    # out, _ = scipy.optimize.nnls(A, b)
 
-        targets = []
-        for group in groups:
-            # Minimize
-            # 1/2 sum_i (x_i + a - target) ** 2
-            # over a for a group of labels
-            n = len(group)
-            pos = [k * min_distance for k in range(n)]
-            a = sum(t - p for t, p in zip(group, pos)) / n
-            if len(targets) > 0 and targets[-1] > pos[0] + a:
-                a = targets[-1] - pos[0] - eps
-            new_pos = [p + a for p in pos]
-            targets += new_pos
+    out = nnls(A, b)
 
+    sol = numpy.empty(n)
+    sol[0] = out[0] + x0_min
+    for k in range(1, n):
+        sol[k] = sol[0] + sum(out[1 : k + 1]) + k * min_distance
+
+    # reorder
     idx2 = [idx.index(k) for k in range(len(idx))]
-    targets = [targets[i] for i in idx2]
-    return targets
+    sol = [sol[i] for i in idx2]
+
+    return sol
 
 
-def legend(ax=None, min_label_distance="auto", alpha=1.4):
+def legend(ax=None, min_label_distance="auto", alpha=1.0):
     ax = ax or plt.gca()
 
     fig = plt.gcf()
-    # fig.set_size_inches(12 / 9 * height, height)
 
     logy = ax.get_yscale() == "log"
 
     if min_label_distance == "auto":
-        # Make sure that the distance is alpha times the fontsize. This needs to be
-        # translated into axes units.
-        fig_height = fig.get_size_inches()[0]
+        # Make sure that the distance is alpha * fontsize. This needs to be translated
+        # into axes units.
+        fig_height_inches = fig.get_size_inches()[1]
         ax = plt.gca()
         ax_pos = ax.get_position()
         ax_height = ax_pos.y1 - ax_pos.y0
-        ax_height_inches = ax_height * fig_height
+        ax_height_inches = ax_height * fig_height_inches
         ylim = ax.get_ylim()
         if logy:
             ax_height_ylim = math.log10(ylim[1]) - math.log10(ylim[0])
