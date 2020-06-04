@@ -16,6 +16,8 @@ from .optimize import nnls
 #   "Lights out": #000000
 _gray = "969696"
 _stroke_width = 0.3
+# make the xticks slightly wider to make them easier to see
+_xtick_width = 0.4
 
 style = {
     "font.size": 14,
@@ -32,7 +34,7 @@ style = {
     "xtick.minor.top": False,
     "xtick.minor.bottom": False,
     "xtick.color": _gray,
-    "xtick.major.width": _stroke_width,
+    "xtick.major.width": _xtick_width,
     "axes.grid": True,
     "axes.grid.axis": "y",
     "grid.color": _gray,
