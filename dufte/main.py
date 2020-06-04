@@ -111,22 +111,21 @@ def _move_min_distance(targets, min_distance):
     return sol
 
 
-def legend(ax=None, min_label_distance="auto", alpha=1.4):
+def legend(ax=None, min_label_distance="auto", alpha=1.0):
     ax = ax or plt.gca()
 
     fig = plt.gcf()
-    # fig.set_size_inches(12 / 9 * height, height)
 
     logy = ax.get_yscale() == "log"
 
     if min_label_distance == "auto":
-        # Make sure that the distance is alpha times the fontsize. This needs to be
-        # translated into axes units.
-        fig_height = fig.get_size_inches()[0]
+        # Make sure that the distance is alpha * fontsize. This needs to be translated
+        # into axes units.
+        fig_height_inches = fig.get_size_inches()[1]
         ax = plt.gca()
         ax_pos = ax.get_position()
         ax_height = ax_pos.y1 - ax_pos.y0
-        ax_height_inches = ax_height * fig_height
+        ax_height_inches = ax_height * fig_height_inches
         ylim = ax.get_ylim()
         if logy:
             ax_height_ylim = math.log10(ylim[1]) - math.log10(ylim[0])
