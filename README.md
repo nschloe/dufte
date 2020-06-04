@@ -60,7 +60,7 @@ The position $x_i$ of the line annotations is computed as the solution of a non-
 least-squares problem
 $$
 \begin{align}
-\frac{1}{2}\sum_i (x_i - t_i)^2 \to \min_x,\\
+\frac{1}{2}\sum_i (x_i - t_i)^2 \to \min_x,\\\\
 (x_i - x_j)^2 \ge a^2 \quad \forall i,j.
 \end{align}
 $$
