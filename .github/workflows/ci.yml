@@ -1,6 +1,6 @@
 name: ci
 
-on: [push]
+on: [pull_request]
 
 jobs:
   lint:
@@ -27,24 +27,12 @@ jobs:
     steps:
     - uses: actions/setup-python@v1
       with:
-        python-version: "3.x"
+        python-version: ${{ matrix.python-version }}
     - uses: actions/checkout@v2
-      with:
-        lfs: true
-    - name: Install package
+    - name: Test with tox
       run: |
-        pip install .
-        pip install -r test_requirements.txt
-    - name: Test with pytest
-      run: |
-        pip install pytest pytest-cov
-        pytest --cov dufte
-    # No codecov until
-    # https://github.com/codecov/codecov-action/issues/43
-    # is solved. :(
-    # - name: Submit to codecov
-    #   uses: codecov/codecov-action@v1.0.6
-    #   with:
-    #     token: ${{ secrets.CODECOV_TOKEN }}
-    #     file: ./coverage.xml
-    #     flags: ${{ matrix.python-version }}
+        pip install tox
+        tox
+    - name: Submit to codecov
+      if: ${{ matrix.python-version == '3.8' }}
+      run: bash <(curl -s https://codecov.io/bash)
