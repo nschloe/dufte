@@ -28,6 +28,11 @@ style = {
     "axes.spines.top": False,
     "axes.spines.right": False,
     "ytick.minor.left": False,
+    # Axes aren't used in this theme, but still set some properties in case the user
+    # decides to turn them on.
+    "axes.edgecolor": _gray,
+    "axes.linewidth": _stroke_width,
+    #
     "ytick.right": False,
     "ytick.color": _gray,
     "ytick.major.width": _stroke_width,
