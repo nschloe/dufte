@@ -1,27 +1,24 @@
 import matplotlib.pyplot as plt
 import numpy
+import pytest
 
 import dufte
 
 
-def test_plot(filename=None, light=True):
+@pytest.mark.parametrize(
+    "filename, light, noise, offsets",
+    [[None, True, 0.1, (1.0, 1.50, 1.60)], [None, True, 0.0, (1.0, 1.50, 1.51)]],
+)
+def test_plot(filename, light, noise, offsets):
     plt.style.use(dufte.style)
 
     numpy.random.seed(0)
     x0 = numpy.linspace(0.0, 3.0, 100)
-    y0 = x0 / (x0 + 1)
-    y0 += 0.1 * numpy.random.rand(len(y0))
-    plt.plot(x0, y0, label="no balancing")
-
-    x1 = numpy.linspace(0.0, 3.0, 100)
-    y1 = 1.5 * x1 / (x1 + 1)
-    y1 += 0.1 * numpy.random.rand(len(y1))
-    plt.plot(x1, y1, label="CRV-27")
-
-    x2 = numpy.linspace(0.0, 3.0, 100)
-    y2 = 1.6 * x2 / (x2 + 1)
-    y2 += 0.1 * numpy.random.rand(len(y2))
-    plt.plot(x2, y2, label="CRV-27*")
+    labels = ["no balancing", "CRV-27", "CRV-27*"]
+    for label, offset in zip(labels, offsets):
+        y0 = offset * x0 / (x0 + 1)
+        y0 += noise * numpy.random.rand(len(y0))
+        plt.plot(x0, y0, label=label)
 
     # plt.xlabel("x label")
     # plt.ylabel("y label")
@@ -45,5 +42,5 @@ def test_plot(filename=None, light=True):
 
 
 if __name__ == "__main__":
-    test_plot("ex1-light.svg")
+    test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
