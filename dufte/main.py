@@ -89,7 +89,7 @@ def _move_min_distance(targets, min_distance):
     """
     # sort targets
     idx = numpy.argsort(targets)
-    targets = sorted(targets)
+    targets = numpy.sort(targets)
 
     n = len(targets)
     x0_min = targets[0] - n * min_distance
@@ -109,7 +109,7 @@ def _move_min_distance(targets, min_distance):
         sol[k] = sol[0] + sum(out[1 : k + 1]) + k * min_distance
 
     # reorder
-    idx2 = [idx.index(k) for k in range(len(idx))]
+    idx2 = [idx.tolist().index(k) for k in range(len(idx))]
     sol = [sol[i] for i in idx2]
 
     return sol
