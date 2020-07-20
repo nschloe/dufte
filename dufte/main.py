@@ -94,23 +94,18 @@ def _move_min_distance(targets, min_distance):
     n = len(targets)
     x0_min = targets[0] - n * min_distance
     A = numpy.tril(numpy.ones([n, n]))
-    b = targets.copy()
-    for i in range(n):
-        b[i] -= x0_min + i * min_distance
+    b = targets - (x0_min + numpy.arange(n) * min_distance)
 
     # import scipy.optimize
     # out, _ = scipy.optimize.nnls(A, b)
 
     out = nnls(A, b)
 
-    sol = numpy.empty(n)
-    sol[0] = out[0] + x0_min
-    for k in range(1, n):
-        sol[k] = sol[0] + sum(out[1 : k + 1]) + k * min_distance
+    sol = numpy.cumsum(out) + x0_min + numpy.arange(n) * min_distance
 
     # reorder
     idx2 = [idx.tolist().index(k) for k in range(len(idx))]
-    sol = [sol[i] for i in idx2]
+    sol = sol[idx2]
 
     return sol
 
