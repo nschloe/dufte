@@ -81,11 +81,6 @@ style = {
 }
 
 
-# https://stackoverflow.com/a/3382369/353337
-def _argsort(seq):
-    return sorted(range(len(seq)), key=seq.__getitem__)
-
-
 def _move_min_distance(targets, min_distance):
     """Move the targets such that they are close to their original positions, but keep
     min_distance apart.
@@ -93,7 +88,7 @@ def _move_min_distance(targets, min_distance):
     https://math.stackexchange.com/a/3705240/36678
     """
     # sort targets
-    idx = _argsort(targets)
+    idx = numpy.argsort(targets)
     targets = sorted(targets)
 
     n = len(targets)
