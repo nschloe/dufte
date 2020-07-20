@@ -76,6 +76,8 @@ style = {
             "9edae5",
         ],
     ),
+    "axes.titlepad": 30.0,
+    "axes.titlesize": 14,
 }
 
 
