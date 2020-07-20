@@ -76,12 +76,9 @@ style = {
             "9edae5",
         ],
     ),
+    "axes.titlepad": 30.0,
+    "axes.titlesize": 14,
 }
-
-
-# https://stackoverflow.com/a/3382369/353337
-def _argsort(seq):
-    return sorted(range(len(seq)), key=seq.__getitem__)
 
 
 def _move_min_distance(targets, min_distance):
@@ -91,29 +88,24 @@ def _move_min_distance(targets, min_distance):
     https://math.stackexchange.com/a/3705240/36678
     """
     # sort targets
-    idx = _argsort(targets)
-    targets = sorted(targets)
+    idx = numpy.argsort(targets)
+    targets = numpy.sort(targets)
 
     n = len(targets)
     x0_min = targets[0] - n * min_distance
     A = numpy.tril(numpy.ones([n, n]))
-    b = targets.copy()
-    for i in range(n):
-        b[i] -= x0_min + i * min_distance
+    b = targets - (x0_min + numpy.arange(n) * min_distance)
 
     # import scipy.optimize
     # out, _ = scipy.optimize.nnls(A, b)
 
     out = nnls(A, b)
 
-    sol = numpy.empty(n)
-    sol[0] = out[0] + x0_min
-    for k in range(1, n):
-        sol[k] = sol[0] + sum(out[1 : k + 1]) + k * min_distance
+    sol = numpy.cumsum(out) + x0_min + numpy.arange(n) * min_distance
 
     # reorder
-    idx2 = [idx.index(k) for k in range(len(idx))]
-    sol = [sol[i] for i in idx2]
+    idx2 = numpy.argsort(idx)
+    sol = sol[idx2]
 
     return sol
 

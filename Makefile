@@ -8,7 +8,6 @@ upload:
 	# Make sure we're on the master branch
 	@if [ "$(shell git rev-parse --abbrev-ref HEAD)" != "master" ]; then exit 1; fi
 	rm -f dist/*
-	# python3 setup.py sdist bdist_wheel
 	# https://stackoverflow.com/a/58756491/353337
 	python3 -m pep517.build --source --binary .
 	twine upload dist/*
@@ -25,10 +24,10 @@ clean:
 	@rm -rf *.egg-info/ build/ dist/ MANIFEST .pytest_cache/
 
 format:
-	isort -rc .
+	isort .
 	black .
 
 check:
-	isort --check -rc .
+	isort --check .
 	black --check .
 	flake8 .
