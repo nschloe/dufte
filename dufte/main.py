@@ -147,6 +147,13 @@ def legend(ax=None, min_label_distance="auto", alpha=1.0):
     targets = [line.get_ydata()[-1] for line in lines]
     if logy:
         targets = [math.log10(t) for t in targets]
+
+    # Sometimes, the max value if beyond ymax. It'd be cool if in this case we could put
+    # the label above the graph (instead of the to the right), but for now let's just
+    # cap the target y.
+    ymax = ax.get_ylim()[1]
+    targets = [min(target, ymax) for target in targets]
+
     targets = _move_min_distance(targets, min_label_distance)
     if logy:
         targets = [10 ** t for t in targets]
