@@ -3,13 +3,15 @@
   <p align="center"><a href="https://en.wikipedia.org/wiki/Edward_Tufte">Tufte</a>-style plots <a href="https://www.linguee.com/german-english/translation/dufte.html">from Berlin</a>.</p>
 </p>
 
-[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
-[![codecov](https://img.shields.io/codecov/c/github/nschloe/dufte.svg?style=flat-square)](https://codecov.io/gh/nschloe/dufte)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/dufte.svg?style=flat-square)](https://pypi.org/pypi/dufte/)
 [![PyPi Version](https://img.shields.io/pypi/v/dufte.svg?style=flat-square)](https://pypi.org/project/dufte)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/dufte.svg?style=flat-square)](https://pypi.org/pypi/dufte/)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
 [![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
+
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
+[![codecov](https://img.shields.io/codecov/c/github/nschloe/dufte.svg?style=flat-square)](https://codecov.io/gh/nschloe/dufte)
+[![LGTM](https://img.shields.io/lgtm/grade/python/github/nschloe/dufte.svg?style=flat-square)](https://lgtm.com/projects/g/nschloe/dufte)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 
