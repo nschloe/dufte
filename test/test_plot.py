@@ -72,6 +72,7 @@ def test_nan():
     # plt.legend()
     plt.show()
 
+
 if __name__ == "__main__":
     # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
