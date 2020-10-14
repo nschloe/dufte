@@ -146,7 +146,8 @@ def legend(ax=None, min_label_distance="auto", alpha=1.0):
                 lines.append(child)
 
     # Add "legend" entries.
-    targets = [line.get_ydata()[-1] for line in lines]
+    # Get last non-nan y-value.
+    targets = [line.get_ydata()[~numpy.isnan(line.get_ydata())][-1] for line in lines]
     if logy:
         targets = [math.log10(t) for t in targets]
 

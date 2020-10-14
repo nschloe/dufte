@@ -62,7 +62,17 @@ def test_no_labels():
     plt.show()
 
 
+def test_nan():
+    plt.style.use(dufte.style)
+    x0 = [0.0, 0.5, 1.0]
+    y0 = [0.0, 0.5, numpy.nan]
+    plt.plot(x0, y0, label="nan")
+
+    dufte.legend()
+    # plt.legend()
+    plt.show()
+
 if __name__ == "__main__":
     # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
-    test_no_labels()
+    test_nan()
