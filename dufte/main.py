@@ -137,14 +137,17 @@ def legend(ax=None, min_label_distance="auto", alpha=1.0):
             min_label_distance_inches / ax_height_inches * ax_height_ylim
         )
 
-    # find all Line2D objects
+    # find all Line2D objects with a valid label
     lines = []
     for child in ax.get_children():
         if isinstance(child, mpl.lines.Line2D):
-            lines.append(child)
+            # https://stackoverflow.com/q/64358117/353337
+            if child.get_label()[0] != "_":
+                lines.append(child)
 
     # Add "legend" entries.
-    targets = [line.get_ydata()[-1] for line in lines]
+    # Get last non-nan y-value.
+    targets = [line.get_ydata()[~numpy.isnan(line.get_ydata())][-1] for line in lines]
     if logy:
         targets = [math.log10(t) for t in targets]
 
