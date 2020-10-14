@@ -41,6 +41,28 @@ def test_plot(filename, light, noise, offsets):
         plt.show()
 
 
+def test_no_labels():
+    plt.style.use(dufte.style)
+
+    numpy.random.seed(0)
+    n = 100
+    x0 = numpy.linspace(0.0, 3.0, n)
+    y0 = 1.0 + 0.1 * numpy.random.rand(n)
+    plt.plot(x0, y0, label="rand 1")
+
+    y0 = 2.0 + 0.1 * numpy.random.rand(n)
+    # no label
+    plt.plot(x0, y0)
+
+    y0 = 3.0 + 0.1 * numpy.random.rand(n)
+    plt.plot(x0, y0, label="rand 3")
+
+    dufte.legend()
+    # plt.legend()
+    plt.show()
+
+
 if __name__ == "__main__":
-    test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
+    # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
+    test_no_labels()
