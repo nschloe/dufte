@@ -73,6 +73,17 @@ def test_nan():
     plt.show()
 
 
+def test_all_nan():
+    plt.style.use(dufte.style)
+    x0 = [0.0, 0.5, 1.0]
+    y0 = [numpy.nan, numpy.nan, numpy.nan]
+    plt.plot(x0, y0, label="nan")
+
+    dufte.legend()
+    # plt.legend()
+    plt.show()
+
+
 if __name__ == "__main__":
     # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
