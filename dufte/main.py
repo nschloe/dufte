@@ -155,6 +155,9 @@ def legend(ax=None, min_label_distance="auto", alpha=1.0):
         else:
             targets.append(ydata[~numpy.isnan(ydata)][-1])
 
+    if not targets:
+        return
+
     if logy:
         targets = [math.log10(t) for t in targets]
 
