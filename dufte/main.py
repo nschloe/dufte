@@ -6,9 +6,10 @@ import numpy
 
 from .optimize import nnls
 
-# The gray value is the average (in CIELAB) of the dark and light font variants on
-# GitHub. See test/intermediate-gray.py for its derivation.
-_gray = "71777e"
+# The CIELAB average between GitHub's dark and light font is #71777e. This is hard to
+# read on dark background, though, and a little too dark on light background, too. Make
+# it lighter. The color #969696 appears to strike a good balance.
+_gray = "969696"
 _stroke_width = 0.3
 # make the xticks slightly wider to make them easier to see
 _xtick_width = 0.4
@@ -42,8 +43,8 @@ style = {
     "grid.color": _gray,
     # Choose the line width such that it's very subtle, but still serves as a guide.
     "grid.linewidth": _stroke_width,
-    # "axes.xmargin": 0,
-    # "axes.ymargin": 0,
+    "axes.xmargin": 0,
+    "axes.ymargin": 0,
     # mpl uses category10 by default, dufte uses cat20,
     # <https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category20>,
     # which basically adds one pale color version of each color in cat10. Change
