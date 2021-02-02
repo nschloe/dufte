@@ -30,8 +30,9 @@ def hex_to_int(rgb):
     return tuple(int(rgb[i : i + 2], 16) for i in (0, 2, 4))
 
 
-c = ["c9d1d9", "24292e"]
-# c = ["dad7d2", "242729"]
+# c = ["000000", "ffffff"]
+c = ["c9d1d9", "24292e"]  # github
+# c = ["dad7d2", "242729"]  # stackoverflow
 
 srgb_linear = colorio.cs.SrgbLinear()
 

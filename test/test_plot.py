@@ -9,7 +9,7 @@ import dufte
     "filename, light, noise, offsets",
     [[None, True, 0.1, (1.0, 1.50, 1.60)], [None, True, 0.0, (1.0, 1.50, 1.51)]],
 )
-def test_plot(filename, light, noise, offsets):
+def test_plot(filename, light: bool, noise, offsets):
     plt.style.use(dufte.style)
 
     numpy.random.seed(0)
@@ -26,8 +26,9 @@ def test_plot(filename, light, noise, offsets):
     dufte.legend()
 
     if not light:
-        plt.gca().set_facecolor("#2d2d2d")
-        plt.gcf().patch.set_facecolor("#2d2d2d")
+        gh_dark_bg = "#0d1117"
+        plt.gca().set_facecolor(gh_dark_bg)
+        plt.gcf().patch.set_facecolor(gh_dark_bg)
 
     if filename:
         # <https://github.com/matplotlib/matplotlib/issues/17321>
@@ -85,7 +86,8 @@ def test_all_nan():
 
 
 if __name__ == "__main__":
-    test_plot(None, True, 0.1, (1.0, 1.5, 1.6))
-    # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
-    # test_plot("ex1-dark.svg", light=False)
+    # test_plot(None, True, 0.1, (1.0, 1.5, 1.6))
+    test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
+    plt.close()
+    test_plot("ex1-dark.svg", False, 0.1, (1.0, 1.5, 1.6))
     # test_nan()

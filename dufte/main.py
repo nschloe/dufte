@@ -6,15 +6,9 @@ import numpy
 
 from .optimize import nnls
 
-# dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
-# (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
-# in the background, like a grid should.)
-#
-# Twitter background:
-#   "Default": #ffffff
-#   "Dim": #15202b
-#   "Lights out": #000000
-_gray = "969696"
+# The gray value is the average (in CIELAB) of the dark and light font variants on
+# GitHub. See test/intermediate-gray.py for its derivation.
+_gray = "71777e"
 _stroke_width = 0.3
 # make the xticks slightly wider to make them easier to see
 _xtick_width = 0.4
@@ -113,7 +107,7 @@ def _move_min_distance(targets, min_distance):
     return sol
 
 
-def legend(ax=None, min_label_distance="auto", alpha=1.0):
+def legend(ax=None, min_label_distance="auto", alpha: float=1.0):
     ax = ax or plt.gca()
 
     fig = plt.gcf()
