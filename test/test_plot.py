@@ -20,8 +20,8 @@ def test_plot(filename, light, noise, offsets):
         y0 += noise * numpy.random.rand(len(y0))
         plt.plot(x0, y0, label=label)
 
-    # plt.xlabel("x label")
-    # plt.ylabel("y label")
+    plt.xlabel("x label")
+    plt.ylabel("y label")
     # plt.title("title")
     dufte.legend()
 
@@ -85,6 +85,7 @@ def test_all_nan():
 
 
 if __name__ == "__main__":
+    test_plot(None, True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
     # test_plot("ex1-dark.svg", light=False)
-    test_nan()
+    # test_nan()
