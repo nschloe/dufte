@@ -20,7 +20,6 @@ This package creates clean and beautiful plots that work on light and dark backg
 
 Simply select the `dufte` style and, if desired, call `dufte.legend()` to get
 line annotations on the right.
-
 ```python
 import matplotlib.pyplot as plt
 import dufte

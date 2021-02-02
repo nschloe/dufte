@@ -25,8 +25,8 @@ clean:
 format:
 	isort .
 	black .
+	blacken-docs README.md
 
-check:
-	isort --check .
+lint:
 	black --check .
 	flake8 .

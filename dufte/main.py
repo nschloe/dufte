@@ -107,7 +107,7 @@ def _move_min_distance(targets, min_distance):
     return sol
 
 
-def legend(ax=None, min_label_distance="auto", alpha: float=1.0):
+def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     ax = ax or plt.gca()
 
     fig = plt.gcf()
