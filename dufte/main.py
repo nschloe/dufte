@@ -6,19 +6,16 @@ import numpy
 
 from .optimize import nnls
 
-# dufte is used via perfplot on stackoverflow which has a light (#fffff) and a dark
-# (#2d2d2d) variant. The midpoint, #969696, should be well readable on both. (And stays
-# in the background, like a grid should.)
-#
-# Twitter background:
-#   "Default": #ffffff
-#   "Dim": #15202b
-#   "Lights out": #000000
-_gray = "969696"
+# The gray value is the average (in CIELAB) of the dark and light font variants on
+# GitHub. See test/intermediate-gray.py for its derivation.
+_gray = "71777e"
 _stroke_width = 0.3
 # make the xticks slightly wider to make them easier to see
 _xtick_width = 0.4
 
+# See <https://matplotlib.org/tutorials/introductory/customizing.html> for all possible
+# rcParams.
+# TODO move, rotate ylabel <https://github.com/matplotlib/matplotlib/issues/19034>
 style = {
     "font.size": 14,
     "text.color": _gray,
@@ -45,11 +42,11 @@ style = {
     "grid.color": _gray,
     # Choose the line width such that it's very subtle, but still serves as a guide.
     "grid.linewidth": _stroke_width,
-    "axes.xmargin": 0,
-    "axes.ymargin": 0,
-    # mpl uses category10 by default, we use cat20,
+    # "axes.xmargin": 0,
+    # "axes.ymargin": 0,
+    # mpl uses category10 by default, dufte uses cat20,
     # <https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category20>,
-    # which basically adds one pale color version of each color in cat10.  Change
+    # which basically adds one pale color version of each color in cat10. Change
     # the order such that the first 10 are cat10.
     "axes.prop_cycle": mpl.cycler(
         color=[
@@ -110,7 +107,7 @@ def _move_min_distance(targets, min_distance):
     return sol
 
 
-def legend(ax=None, min_label_distance="auto", alpha=1.0):
+def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     ax = ax or plt.gca()
 
     fig = plt.gcf()
