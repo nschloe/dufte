@@ -8,6 +8,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
 [![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
 
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=chat&message=on%20discord&color=7289da&style=flat-square)](https://discord.gg/hnTJ5MRX2Y)
+
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/dufte.svg?style=flat-square)](https://codecov.io/gh/nschloe/dufte)
 [![LGTM](https://img.shields.io/lgtm/grade/python/github/nschloe/dufte.svg?style=flat-square)](https://lgtm.com/projects/g/nschloe/dufte)
