@@ -58,7 +58,7 @@ Further reading:
 
 
 ### Background
-[![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate)
 
 The position $x_i$ of the line annotations is computed as the solution of a non-negative
 least-squares problem
