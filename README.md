@@ -8,8 +8,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
 [![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
 
-[![Discord](https://img.shields.io/static/v1?logo=discord&label=chat&message=on%20discord&color=7289da&style=flat-square)](https://discord.gg/hnTJ5MRX2Y)
-
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/dufte.svg?style=flat-square)](https://codecov.io/gh/nschloe/dufte)
 [![LGTM](https://img.shields.io/lgtm/grade/python/github/nschloe/dufte.svg?style=flat-square)](https://lgtm.com/projects/g/nschloe/dufte)
@@ -58,17 +56,18 @@ Further reading:
 
 
 ### Background
-[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi)
 
-The position $x_i$ of the line annotations is computed as the solution of a non-negative
-least-squares problem
-$$
+The position $`x_i`$ of the line annotations is computed as the solution of a
+non-negative least-squares problem
+```math
 \begin{align}
-\frac{1}{2}\sum_i (x_i - t_i)^2 \to \min_x,\\\\
+\frac{1}{2}\sum_i (x_i - t_i)^2 \to \min_x,\\
 (x_i - x_j)^2 \ge a^2 \quad \forall i,j.
 \end{align}
-$$
-where $a$ is the minimum distance between two entries and $t_i$ is the target position.
+```
+where $`a`$ is the minimum distance between two entries and $`t_i`$ is the target
+position.
 
 
 ### Testing
@@ -79,5 +78,5 @@ pytest
 ```
 
 ### License
-
-This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
+This software is published under the [GPLv3
+license](https://www.gnu.org/licenses/gpl-3.0.en.html).
