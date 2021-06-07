@@ -190,8 +190,8 @@ def ylabel(string):
     # coordinates of the top ytick.
     ax = plt.gca()
 
-    yticks = ax.get_yticks()
-    coords = np.column_stack([np.zeros_like(yticks), yticks])
+    yticks_pos = ax.get_yticks()
+    coords = np.column_stack([np.zeros_like(yticks_pos), yticks_pos])
     ticks = ax.transAxes.inverted().transform(ax.transData.transform(coords))[:, 1]
     # filter out the ticks which aren't shown
     tol = 1.0e-5
@@ -199,15 +199,18 @@ def ylabel(string):
 
     # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
     # an eye on <https://stackoverflow.com/q/67872207/353337>.
-    # get the label padding in axis coordinates
-    pad_pt = ax.yaxis.get_major_ticks()[-1].get_pad()
-    pad_in = pad_pt / 72.0
-    # get axes width in inches
-    # https://stackoverflow.com/a/19306776/353337
-    fig = plt.gcf()
-    bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    width_in = bbox.width
-    pad_axcoords = pad_in / width_in
+    yticks = ax.yaxis.get_major_ticks()
+    if len(yticks) > 0:
+        pad_pt = ax.yaxis.get_major_ticks()[-1].get_pad()
+        pad_in = pad_pt / 72.0
+        # get axes width in inches
+        # https://stackoverflow.com/a/19306776/353337
+        fig = plt.gcf()
+        bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+        width_in = bbox.width
+        pad_axcoords = pad_in / width_in
+    else:
+        pad_axcoords = 0.0
 
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
