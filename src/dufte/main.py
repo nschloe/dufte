@@ -197,9 +197,7 @@ def ylabel(string):
     tol = 1.0e-5
     ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
 
-    ylabel = plt.ylabel(
-        string, horizontalalignment="right", multialignment="right"
-    )
+    ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
     plt.gca().yaxis.set_label_coords(0.0, ticks[-1] + 0.1)
     ylabel.set_rotation(0)
