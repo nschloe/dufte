@@ -189,15 +189,13 @@ def ylabel(string):
     # See <https://stackoverflow.com/a/27919217/353337> on how to get the axes
     # coordinates of the top ytick.
     ax = plt.gca()
+
     yticks = ax.get_yticks()
-    print(yticks)
     coords = np.column_stack([np.zeros_like(yticks), yticks])
     ticks = ax.transAxes.inverted().transform(ax.transData.transform(coords))[:, 1]
-    print(ticks)
     # filter out the ticks which aren't shown
     tol = 1.0e-5
     ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
-    print(ticks)
 
     ylabel = plt.ylabel(
         string, horizontalalignment="right", multialignment="right"
