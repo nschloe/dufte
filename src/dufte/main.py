@@ -197,7 +197,19 @@ def ylabel(string):
     tol = 1.0e-5
     ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
 
+    # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
+    # an eye on <https://stackoverflow.com/q/67872207/353337>.
+    # get the label padding in axis coordinates
+    pad_pt = ax.yaxis.get_major_ticks()[-1].get_pad()
+    pad_in = pad_pt / 72.0
+    # get axes width in inches
+    # https://stackoverflow.com/a/19306776/353337
+    fig = plt.gcf()
+    bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+    width_in = bbox.width
+    pad_axcoords = pad_in / width_in
+
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
-    plt.gca().yaxis.set_label_coords(0.0, ticks[-1] + 0.1)
+    plt.gca().yaxis.set_label_coords(-pad_axcoords, ticks[-1] + 0.1)
     ylabel.set_rotation(0)
