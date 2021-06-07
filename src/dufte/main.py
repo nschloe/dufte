@@ -201,19 +201,21 @@ def ylabel(string):
     # an eye on <https://stackoverflow.com/q/67872207/353337>.
     yticks = ax.yaxis.get_major_ticks()
     if len(yticks) > 0:
-        pad_pt = ax.yaxis.get_major_ticks()[-1].get_pad()
+        pad_pt = yticks[-1].get_pad()
         pad_in = pad_pt / 72.0
         # get axes width in inches
         # https://stackoverflow.com/a/19306776/353337
-        fig = plt.gcf()
-        bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-        width_in = bbox.width
-        pad_axcoords = pad_in / width_in
-        pos = (-pad_axcoords, ticks[-1] + 0.1)
+        bbox = ax.get_window_extent().transformed(plt.gcf().dpi_scale_trans.inverted())
+        pos_x = -pad_in / bbox.width
     else:
-        pos = (0.0, 1.0)
+        pos_x = 0.0
+
+    if len(ticks) > 0:
+        pos_y = ticks[-1] + 0.1
+    else:
+        pos_y = 1.0
 
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
-    plt.gca().yaxis.set_label_coords(*pos)
+    plt.gca().yaxis.set_label_coords(pos_x, pos_y)
     ylabel.set_rotation(0)
