@@ -2,7 +2,7 @@ import math
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 
 from .optimize import nnls
 
@@ -86,23 +86,23 @@ def _move_min_distance(targets, min_distance):
     https://math.stackexchange.com/a/3705240/36678
     """
     # sort targets
-    idx = numpy.argsort(targets)
-    targets = numpy.sort(targets)
+    idx = np.argsort(targets)
+    targets = np.sort(targets)
 
     n = len(targets)
     x0_min = targets[0] - n * min_distance
-    A = numpy.tril(numpy.ones([n, n]))
-    b = targets - (x0_min + numpy.arange(n) * min_distance)
+    A = np.tril(np.ones([n, n]))
+    b = targets - (x0_min + np.arange(n) * min_distance)
 
     # import scipy.optimize
     # out, _ = scipy.optimize.nnls(A, b)
 
     out = nnls(A, b)
 
-    sol = numpy.cumsum(out) + x0_min + numpy.arange(n) * min_distance
+    sol = np.cumsum(out) + x0_min + np.arange(n) * min_distance
 
     # reorder
-    idx2 = numpy.argsort(idx)
+    idx2 = np.argsort(idx)
     sol = sol[idx2]
 
     return sol
@@ -148,10 +148,10 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     targets = []
     for line in lines:
         ydata = line.get_ydata()
-        if numpy.all(numpy.isnan(ydata)):
-            targets.append(numpy.nan)
+        if np.all(np.isnan(ydata)):
+            targets.append(np.nan)
         else:
-            targets.append(ydata[~numpy.isnan(ydata)][-1])
+            targets.append(ydata[~np.isnan(ydata)][-1])
 
     if not targets:
         return
@@ -181,3 +181,27 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
             verticalalignment="center",
             color=color,
         )
+
+
+def ylabel(string):
+    # Rotate the ylabel (such that you can read it comfortably) and place it above the
+    # top ytick. This requires some logic, so it cannot be incorporated in `style`.
+    # See <https://stackoverflow.com/a/27919217/353337> on how to get the axes
+    # coordinates of the top ytick.
+    ax = plt.gca()
+    yticks = ax.get_yticks()
+    print(yticks)
+    coords = np.column_stack([np.zeros_like(yticks), yticks])
+    ticks = ax.transAxes.inverted().transform(ax.transData.transform(coords))[:, 1]
+    print(ticks)
+    # filter out the ticks which aren't shown
+    tol = 1.0e-5
+    ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
+    print(ticks)
+
+    ylabel = plt.ylabel(
+        string, horizontalalignment="right", multialignment="right"
+    )
+    # place the label 10% above the top tick
+    plt.gca().yaxis.set_label_coords(0.0, ticks[-1] + 0.1)
+    ylabel.set_rotation(0)

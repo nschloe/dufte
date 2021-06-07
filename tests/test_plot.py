@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 import pytest
 
 import dufte
@@ -12,12 +12,12 @@ import dufte
 def test_plot(filename, light: bool, noise, offsets):
     plt.style.use(dufte.style)
 
-    numpy.random.seed(0)
-    x0 = numpy.linspace(0.0, 3.0, 100)
+    np.random.seed(0)
+    x0 = np.linspace(0.0, 3.0, 100)
     labels = ["no balancing", "CRV-27", "CRV-27*"]
     for label, offset in zip(labels, offsets):
         y0 = offset * x0 / (x0 + 1)
-        y0 += noise * numpy.random.rand(len(y0))
+        y0 += noise * np.random.rand(len(y0))
         plt.plot(x0, y0, label=label)
 
     plt.xlabel("x label")
@@ -45,17 +45,17 @@ def test_plot(filename, light: bool, noise, offsets):
 def test_no_labels():
     plt.style.use(dufte.style)
 
-    numpy.random.seed(0)
+    np.random.seed(0)
     n = 100
-    x0 = numpy.linspace(0.0, 3.0, n)
-    y0 = 1.0 + 0.1 * numpy.random.rand(n)
+    x0 = np.linspace(0.0, 3.0, n)
+    y0 = 1.0 + 0.1 * np.random.rand(n)
     plt.plot(x0, y0, label="rand 1")
 
-    y0 = 2.0 + 0.1 * numpy.random.rand(n)
+    y0 = 2.0 + 0.1 * np.random.rand(n)
     # no label
     plt.plot(x0, y0)
 
-    y0 = 3.0 + 0.1 * numpy.random.rand(n)
+    y0 = 3.0 + 0.1 * np.random.rand(n)
     plt.plot(x0, y0, label="rand 3")
 
     dufte.legend()
@@ -66,7 +66,7 @@ def test_no_labels():
 def test_nan():
     plt.style.use(dufte.style)
     x0 = [0.0, 0.5, 1.0]
-    y0 = [0.0, 0.5, numpy.nan]
+    y0 = [0.0, 0.5, np.nan]
     plt.plot(x0, y0, label="nan")
 
     dufte.legend()
@@ -77,7 +77,7 @@ def test_nan():
 def test_all_nan():
     plt.style.use(dufte.style)
     x0 = [0.0, 0.5, 1.0]
-    y0 = [numpy.nan, numpy.nan, numpy.nan]
+    y0 = [np.nan, np.nan, np.nan]
     plt.plot(x0, y0, label="nan")
 
     dufte.legend()
