@@ -209,10 +209,11 @@ def ylabel(string):
         bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
         width_in = bbox.width
         pad_axcoords = pad_in / width_in
+        pos = (-pad_axcoords, ticks[-1] + 0.1)
     else:
-        pad_axcoords = 0.0
+        pos = (0.0, 1.0)
 
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
-    plt.gca().yaxis.set_label_coords(-pad_axcoords, ticks[-1] + 0.1)
+    plt.gca().yaxis.set_label_coords(*pos)
     ylabel.set_rotation(0)
