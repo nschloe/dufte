@@ -27,13 +27,14 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: "3.5 - 3.10"
+    # strategy:
+    #   matrix:
+    #     python-version: "3.5 - 3.10"
     steps:
     - uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        # python-version: ${{ matrix.python-version }}
+        python-version: "3.5 - 3.10"
     - uses: actions/checkout@v2
     - name: Test with tox
       run: |
