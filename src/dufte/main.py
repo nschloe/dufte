@@ -175,7 +175,10 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     xlim0, xlim1 = ax.get_xlim()
     for label, t, color in zip(labels, targets, colors):
         plt.text(
-            xlim1 + (xlim1 - xlim0) / 100,
+            # Leave the labels some space to breathe. If they are too close to the
+            # lines, they can get visually merged.
+            # <https://twitter.com/EdwardTufte/status/1416035189843714050>
+            xlim1 + (xlim1 - xlim0) / 100 * 3,
             t,
             label,
             verticalalignment="center",

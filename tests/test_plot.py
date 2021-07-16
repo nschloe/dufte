@@ -20,8 +20,8 @@ def test_plot(filename, light: bool, noise, offsets):
         y0 += noise * np.random.rand(len(y0))
         plt.plot(x0, y0, label=label)
 
-    plt.xlabel("x label")
-    plt.ylabel("y label")
+    plt.xlabel("distance [m]")
+    dufte.ylabel("voltage [V]")
     # plt.title("title")
     dufte.legend()
 
