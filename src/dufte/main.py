@@ -198,7 +198,8 @@ def ylabel(string):
     ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
 
     # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
-    # an eye on <https://stackoverflow.com/q/67872207/353337>.
+    # an eye on <https://stackoverflow.com/q/67872207/353337> and
+    # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>.
     yticks = ax.yaxis.get_major_ticks()
     if len(yticks) > 0:
         pad_pt = yticks[-1].get_pad()

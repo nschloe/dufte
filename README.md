@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="40%"></a>
-  <p align="center"><a href="https://en.wikipedia.org/wiki/Edward_Tufte">Tufte</a>-style plots <a href="https://www.linguee.com/german-english/translation/dufte.html">from Berlin</a>.</p>
+  <p align="center"><a href="https://en.wikipedia.org/wiki/Berlin_German">Da kiekste, wa?</a></p>
 </p>
 
 [![PyPi Version](https://img.shields.io/pypi/v/dufte.svg?style=flat-square)](https://pypi.org/project/dufte)
@@ -14,12 +14,13 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
 This package creates clean and beautiful plots that work on light and dark backgrounds.
+Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
 <img src="https://nschloe.github.io/dufte/ex1-light.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dark.svg">
 :----:|:----:|
 
-Simply select the `dufte` style and, if desired, call `dufte.legend()` to get
-line annotations on the right.
+To use, simply select the `dufte` style. Check out `dufte.legend()` and
+`dufte.ylabel()` for more duftness.
 ```python
 import matplotlib.pyplot as plt
 import dufte
@@ -54,6 +55,11 @@ Further reading:
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
  * [prettyplotlib](https://github.com/olgabot/prettyplotlib)
  * [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
+
+Projects using dufte:
+
+ * [perfplot](https://github.com/nschloe/perfplot)
+ * [stargraph](https://github.com/nschloe/stargraph)
 
 
 ### Background
