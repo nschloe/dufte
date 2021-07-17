@@ -1,4 +1,4 @@
-import math
+from math import log10
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -125,7 +125,7 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
         ax_height_inches = ax_height * fig_height_inches
         ylim = ax.get_ylim()
         if logy:
-            ax_height_ylim = math.log10(ylim[1]) - math.log10(ylim[0])
+            ax_height_ylim = log10(ylim[1]) - log10(ylim[0])
         else:
             ax_height_ylim = ylim[1] - ylim[0]
         # 1 pt = 1/72 in
@@ -157,7 +157,7 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
         return
 
     if logy:
-        targets = [math.log10(t) for t in targets]
+        targets = [log10(t) for t in targets]
 
     # Sometimes, the max value if beyond ymax. It'd be cool if in this case we could put
     # the label above the graph (instead of the to the right), but for now let's just
@@ -204,7 +204,7 @@ def ylabel(string):
     # an eye on <https://stackoverflow.com/q/67872207/353337> and
     # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>.
     yticks = ax.yaxis.get_major_ticks()
-    if len(yticks) > 0:
+    if len(yticks):
         pad_pt = yticks[-1].get_pad()
         pad_in = pad_pt / 72.0
         # get axes width in inches
@@ -214,7 +214,7 @@ def ylabel(string):
     else:
         pos_x = 0.0
 
-    if len(ticks) > 0:
+    if (ticks):
         pos_y = ticks[-1] + 0.1
     else:
         pos_y = 1.0
