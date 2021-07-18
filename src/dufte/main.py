@@ -14,13 +14,13 @@ _stroke_width = 0.3
 # make the xticks slightly wider to make them easier to see
 _xtick_width = 0.4
 
-# See <https://matplotlib.org/tutorials/introductory/customizing.html> for all possible
-# rcParams.
-# TODO move, rotate ylabel <https://github.com/matplotlib/matplotlib/issues/19034>
+# See <https://matplotlib.org/stable/tutorials/introductory/customizing.html> for all
+# possible rcParams.
 style = {
     "font.size": 14,
     "text.color": _gray,
     "axes.labelcolor": _gray,
+    "axes.labelpad": 20,
     "axes.spines.left": False,
     "axes.spines.bottom": False,
     "axes.spines.top": False,
