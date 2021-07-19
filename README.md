@@ -19,6 +19,7 @@ Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tuft
 
 <img src="https://nschloe.github.io/dufte/ex1-light.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dark.svg">
 :----:|:----:|
+<img src="https://nschloe.github.io/dufte/bar-light.svg"> |  <img src="https://nschloe.github.io/dufte/bar-dark.svg">
 
 To use, simply select the `dufte` style. Check out `dufte.legend()` and
 `dufte.ylabel()` for more duftness.
