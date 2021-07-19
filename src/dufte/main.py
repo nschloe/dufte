@@ -85,7 +85,6 @@ style_bar = style.copy()
 # hide xticks for bars; the label is enough
 style_bar["xtick.major.width"] = 0
 # unhide the bar labels
-style_bar["xtick.color"] = "k"
 style_bar["xtick.major.pad"] = 13
 style_bar["font.size"] = 16
 
