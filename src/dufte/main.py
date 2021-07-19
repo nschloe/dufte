@@ -192,10 +192,16 @@ def ylabel(string):
 
     yticks_pos = ax.get_yticks()
     coords = np.column_stack([np.zeros_like(yticks_pos), yticks_pos])
-    ticks = ax.transAxes.inverted().transform(ax.transData.transform(coords))[:, 1]
+    data_to_axis = ax.transData + ax.transAxes.inverted()
+    yticks_pos_ax = data_to_axis.transform(coords)[:, 1]
     # filter out the ticks which aren't shown
     tol = 1.0e-5
-    ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
+    yticks_pos_ax = yticks_pos_ax[(-tol < yticks_pos_ax) & (yticks_pos_ax < 1.0 + tol)]
+
+    if len(yticks_pos_ax) > 0:
+        pos_y = yticks_pos_ax[-1] + 0.1
+    else:
+        pos_y = 1.0
 
     # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
     # an eye on <https://stackoverflow.com/q/67872207/353337> and
@@ -211,12 +217,7 @@ def ylabel(string):
     else:
         pos_x = 0.0
 
-    if len(ticks) > 0:
-        pos_y = ticks[-1] + 0.1
-    else:
-        pos_y = 1.0
-
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
-    plt.gca().yaxis.set_label_coords(pos_x, pos_y)
+    ax.yaxis.set_label_coords(pos_x, pos_y)
     ylabel.set_rotation(0)
