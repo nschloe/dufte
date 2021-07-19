@@ -12,7 +12,6 @@ def test_bar(filename=None, light=True):
         plt.xticks(xpos, labels)
         dufte.show_bar_values("{:.2f}")
         plt.title("average temperature [°C]")
-        plt.savefig("out.png", bbox_inches="tight")
 
         if not light:
             gh_dark_bg = "#0d1117"
@@ -20,12 +19,14 @@ def test_bar(filename=None, light=True):
             plt.gcf().patch.set_facecolor(gh_dark_bg)
 
     if filename:
-        plt.savefig(filename, transparent=False, bbox_inches="tight")
+        plt.savefig(filename, transparent=True, bbox_inches="tight")
     else:
         plt.show()
 
 
 if __name__ == "__main__":
-    test_bar("bar-light.svg", True)
+    # test_bar("bar-light.svg", True)
+    # plt.close()
+    # test_bar("bar-dark.svg", False)
+    test_bar("bar.svg", False)
     plt.close()
-    test_bar("bar-dark.svg", False)

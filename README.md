@@ -30,21 +30,21 @@ import numpy as np
 
 plt.style.use(dufte.style)
 
-np.random.seed(0)
+rng = np.random.default_rng(0)
 
 x0 = np.linspace(0.0, 3.0, 100)
 y0 = x0 / (x0 + 1)
-y0 += 0.1 * np.random.rand(len(y0))
+y0 += 0.1 * rng.random(len(y0))
 plt.plot(x0, y0, label="no balacing")
 
 x1 = np.linspace(0.0, 3.0, 100)
 y1 = 1.5 * x1 / (x1 + 1)
-y1 += 0.1 * np.random.rand(len(y1))
+y1 += 0.1 * rng.random(len(y1))
 plt.plot(x1, y1, label="CRV-27")
 
 x2 = np.linspace(0.0, 3.0, 100)
 y2 = 1.6 * x2 / (x2 + 1)
-y2 += 0.1 * np.random.rand(len(y2))
+y2 += 0.1 * rng.random(len(y2))
 plt.plot(x2, y2, label="CRV-27*")
 
 dufte.ylabel("ylabel")

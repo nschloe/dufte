@@ -32,7 +32,7 @@ def test_plot(filename, light: bool, noise, offsets):
         plt.gcf().patch.set_facecolor(gh_dark_bg)
 
     if filename:
-        plt.savefig(filename, transparent=False, bbox_inches="tight")
+        plt.savefig(filename, transparent=True, bbox_inches="tight")
     else:
         plt.show()
 
@@ -82,7 +82,8 @@ def test_all_nan():
 
 if __name__ == "__main__":
     # test_plot(None, True, 0.1, (1.0, 1.5, 1.6))
-    test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
+    # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
+    # plt.close()
+    # test_plot("ex1-dark.svg", False, 0.1, (1.0, 1.5, 1.6))
+    test_plot("ex1.svg", False, 0.1, (1.0, 1.5, 1.6))
     plt.close()
-    test_plot("ex1-dark.svg", False, 0.1, (1.0, 1.5, 1.6))
-    # test_nan()
