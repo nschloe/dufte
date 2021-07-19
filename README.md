@@ -52,6 +52,24 @@ dufte.legend()
 
 plt.show()
 ```
+The bar plot is created with `dufte.style_bar` here and `dufte.show_bar_values()`.
+Note the use of `context` instead of `style.use()`; both are appropriate.
+```python
+import matplotlib.pyplot as plt
+import dufte
+
+
+with plt.style.context(dufte.style_bar):
+    labels = ["Australia", "Brazil", "China", "Germany", "Mexico", "United\nStates"]
+    vals = [21.65, 24.5, 6.95, 8.40, 21.00, 8.55]
+    xpos = range(len(vals))
+    plt.bar(xpos, vals)
+    plt.xticks(xpos, labels)
+    dufte.show_bar_values("{:.2f}")
+    plt.title("average temperature [°C]")
+    plt.show()
+```
+
 Further reading:
 
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
