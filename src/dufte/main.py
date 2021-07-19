@@ -20,7 +20,7 @@ style = {
     "font.size": 14,
     "text.color": _gray,
     "axes.labelcolor": _gray,
-    "axes.labelpad": 20,
+    "axes.labelpad": 18,
     "axes.spines.left": False,
     "axes.spines.bottom": False,
     "axes.spines.top": False,
@@ -172,18 +172,15 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     labels = [line.get_label() for line in lines]
     colors = [line.get_color() for line in lines]
 
-    xlim0, xlim1 = ax.get_xlim()
-    for label, t, color in zip(labels, targets, colors):
-        plt.text(
-            # Leave the labels some space to breathe. If they are too close to the
-            # lines, they can get visually merged.
-            # <https://twitter.com/EdwardTufte/status/1416035189843714050>
-            xlim1 + (xlim1 - xlim0) / 100 * 3,
-            t,
-            label,
-            verticalalignment="center",
-            color=color,
-        )
+    # Leave the labels some space to breathe. If they are too close to the
+    # lines, they can get visually merged.
+    # <https://twitter.com/EdwardTufte/status/1416035189843714050>
+    # Don't forget to transform to axis coordinates first. This makes sure the
+    # https://stackoverflow.com/a/40475221/353337
+    axis_to_data = ax.transAxes + ax.transData.inverted()
+    xpos = axis_to_data.transform([1.03, 1.0])[0]
+    for label, ypos, color in zip(labels, targets, colors):
+        plt.text(xpos, ypos, label, verticalalignment="center", color=color)
 
 
 def ylabel(string):
@@ -195,31 +192,36 @@ def ylabel(string):
 
     yticks_pos = ax.get_yticks()
     coords = np.column_stack([np.zeros_like(yticks_pos), yticks_pos])
-    ticks = ax.transAxes.inverted().transform(ax.transData.transform(coords))[:, 1]
+    data_to_axis = ax.transData + ax.transAxes.inverted()
+    yticks_pos_ax = data_to_axis.transform(coords)[:, 1]
     # filter out the ticks which aren't shown
     tol = 1.0e-5
-    ticks = ticks[(-tol < ticks) & (ticks < 1.0 + tol)]
-
-    # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
-    # an eye on <https://stackoverflow.com/q/67872207/353337> and
-    # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>.
-    yticks = ax.yaxis.get_major_ticks()
-    if len(yticks) > 0:
-        pad_pt = yticks[-1].get_pad()
-        pad_in = pad_pt / 72.0
-        # get axes width in inches
-        # https://stackoverflow.com/a/19306776/353337
-        bbox = ax.get_window_extent().transformed(plt.gcf().dpi_scale_trans.inverted())
-        pos_x = -pad_in / bbox.width
-    else:
-        pos_x = 0.0
-
-    if len(ticks) > 0:
-        pos_y = ticks[-1] + 0.1
+    yticks_pos_ax = yticks_pos_ax[(-tol < yticks_pos_ax) & (yticks_pos_ax < 1.0 + tol)]
+    if len(yticks_pos_ax) > 0:
+        pos_y = yticks_pos_ax[-1] + 0.1
     else:
         pos_y = 1.0
 
+    # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
+    # an eye on <https://stackoverflow.com/q/67872207/353337> and
+    # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>
+    # and
+    # <https://github.com/matplotlib/matplotlib/issues/20677>
+    yticks = ax.yaxis.get_major_ticks()
+    if len(yticks) > 0:
+        pad_pt = yticks[-1].get_pad()
+        # https://stackoverflow.com/a/51213884/353337
+        # ticklen_pt = ax.yaxis.majorTicks[0].tick1line.get_markersize()
+        # dist_in = (pad_pt + ticklen_pt) / 72.0
+        dist_in = pad_pt / 72.0
+        # get axes width in inches
+        # https://stackoverflow.com/a/19306776/353337
+        bbox = ax.get_window_extent().transformed(plt.gcf().dpi_scale_trans.inverted())
+        pos_x = -dist_in / bbox.width
+    else:
+        pos_x = 0.0
+
     ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
-    plt.gca().yaxis.set_label_coords(pos_x, pos_y)
+    ax.yaxis.set_label_coords(pos_x, pos_y)
     ylabel.set_rotation(0)
