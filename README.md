@@ -17,9 +17,8 @@
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
-<img src="https://nschloe.github.io/dufte/ex1-light.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dark.svg">
+<img src="https://nschloe.github.io/dufte/ex1.svg"> |  <img src="https://nschloe.github.io/dufte/bar.svg">
 :----:|:----:|
-<img src="https://nschloe.github.io/dufte/bar-light.svg"> |  <img src="https://nschloe.github.io/dufte/bar-dark.svg">
 
 To use, simply select the `dufte` style. Check out `dufte.legend()` and
 `dufte.ylabel()` for more duftness.
@@ -72,12 +71,13 @@ with plt.style.context(dufte.style_bar):
 
 Further reading:
 
+ * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
+   <img src="https://nschloe.github.io/dufte/data-ink.webm">
+ * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
+ * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
  * [prettyplotlib](https://github.com/olgabot/prettyplotlib)
  * [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
- * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
- * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
- * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
 
 Projects using dufte:
 
