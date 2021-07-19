@@ -30,6 +30,8 @@ style = {
     # decides to turn them on.
     "axes.edgecolor": _gray,
     "axes.linewidth": _stroke_width,
+    # default is "line", i.e., below lines but above patches (bars)
+    "axes.axisbelow": True,
     #
     "ytick.right": False,
     "ytick.color": _gray,
@@ -77,6 +79,12 @@ style = {
     "axes.titlepad": 30.0,
     "axes.titlesize": 14,
 }
+
+style_bar = style
+# hide xticks for bars; the label is enough
+style_bar["xtick.major.width"] = 0
+# unhide the bar labels
+style_bar["xtick.color"] = "k"
 
 
 def _move_min_distance(targets, min_distance):

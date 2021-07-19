@@ -1,3 +1,3 @@
-from .main import legend, style, ylabel
+from .main import legend, style, style_bar, ylabel
 
-__all__ = ["legend", "style", "ylabel"]
+__all__ = ["legend", "style", "style_bar", "ylabel"]

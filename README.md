@@ -56,6 +56,8 @@ Further reading:
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
  * [prettyplotlib](https://github.com/olgabot/prettyplotlib)
  * [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
+ * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
+ * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
 
 Projects using dufte:
 
