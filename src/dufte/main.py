@@ -20,7 +20,7 @@ style = {
     "font.size": 14,
     "text.color": _gray,
     "axes.labelcolor": _gray,
-    "axes.labelpad": 20,
+    "axes.labelpad": 18,
     "axes.spines.left": False,
     "axes.spines.bottom": False,
     "axes.spines.top": False,
@@ -172,18 +172,15 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     labels = [line.get_label() for line in lines]
     colors = [line.get_color() for line in lines]
 
-    xlim0, xlim1 = ax.get_xlim()
-    for label, t, color in zip(labels, targets, colors):
-        plt.text(
-            # Leave the labels some space to breathe. If they are too close to the
-            # lines, they can get visually merged.
-            # <https://twitter.com/EdwardTufte/status/1416035189843714050>
-            xlim1 + (xlim1 - xlim0) / 100 * 3,
-            t,
-            label,
-            verticalalignment="center",
-            color=color,
-        )
+    # Leave the labels some space to breathe. If they are too close to the
+    # lines, they can get visually merged.
+    # <https://twitter.com/EdwardTufte/status/1416035189843714050>
+    # Don't forget to transform to axis coordinates first. This makes sure the
+    # https://stackoverflow.com/a/40475221/353337
+    axis_to_data = ax.transAxes + ax.transData.inverted()
+    xpos = axis_to_data.transform([1.03, 1.0])[0]
+    for label, ypos, color in zip(labels, targets, colors):
+        plt.text(xpos, ypos, label, verticalalignment="center", color=color)
 
 
 def ylabel(string):
