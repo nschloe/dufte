@@ -72,7 +72,7 @@ with plt.style.context(dufte.style_bar):
 Further reading:
 
  * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
-   <img src="https://nschloe.github.io/dufte/data-ink.webm">
+   <img src="https://nschloe.github.io/dufte/data-ink.webp">
  * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
  * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
