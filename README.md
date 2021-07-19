@@ -58,6 +58,7 @@ Further reading:
  * [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
  * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
  * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
+ * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
 
 Projects using dufte:
 
