@@ -30,6 +30,8 @@ style = {
     # decides to turn them on.
     "axes.edgecolor": _gray,
     "axes.linewidth": _stroke_width,
+    # default is "line", i.e., below lines but above patches (bars)
+    "axes.axisbelow": True,
     #
     "ytick.right": False,
     "ytick.color": _gray,
@@ -74,9 +76,17 @@ style = {
             "9edae5",
         ],
     ),
-    "axes.titlepad": 30.0,
-    "axes.titlesize": 14,
+    "axes.titlepad": 40,
+    "axes.titlesize": 18,
+    "axes.titlelocation": "left",
 }
+
+style_bar = style.copy()
+# hide xticks for bars; the label is enough
+style_bar["xtick.major.width"] = 0
+# unhide the bar labels
+style_bar["xtick.major.pad"] = 13
+style_bar["font.size"] = 16
 
 
 def _move_min_distance(targets, min_distance):
@@ -225,3 +235,29 @@ def ylabel(string):
     # place the label 10% above the top tick
     ax.yaxis.set_label_coords(pos_x, pos_y)
     ylabel.set_rotation(0)
+
+
+def show_bar_values(fmt="{}"):
+    ax = plt.gca()
+
+    # turn off y-ticks and y-grid
+    plt.tick_params(axis="y", which="both", left=False, right=False, labelleft=False)
+    plt.grid(False)
+
+    data_to_axis = ax.transData + ax.transAxes.inverted()
+    axis_to_data = ax.transAxes + ax.transData.inverted()
+
+    for rect in ax.patches:
+        height = rect.get_height()
+        ypos_ax = data_to_axis.transform([1.0, height])
+        ypos = axis_to_data.transform(ypos_ax - 0.1)[1]
+        ax.text(
+            rect.get_x() + rect.get_width() / 2,
+            ypos,
+            fmt.format(height),
+            size=14,
+            weight="bold",
+            ha="center",
+            va="bottom",
+            color="white",
+        )
