@@ -197,7 +197,6 @@ def ylabel(string):
     # filter out the ticks which aren't shown
     tol = 1.0e-5
     yticks_pos_ax = yticks_pos_ax[(-tol < yticks_pos_ax) & (yticks_pos_ax < 1.0 + tol)]
-
     if len(yticks_pos_ax) > 0:
         pos_y = yticks_pos_ax[-1] + 0.1
     else:
@@ -205,15 +204,20 @@ def ylabel(string):
 
     # Get the padding in axes coordinates. The below logic isn't quite correct, so keep
     # an eye on <https://stackoverflow.com/q/67872207/353337> and
-    # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>.
+    # <https://discourse.matplotlib.org/t/get-ytick-label-distance-in-axis-coordinates/22210>
+    # and
+    # <https://github.com/matplotlib/matplotlib/issues/20677>
     yticks = ax.yaxis.get_major_ticks()
     if len(yticks) > 0:
         pad_pt = yticks[-1].get_pad()
-        pad_in = pad_pt / 72.0
+        # https://stackoverflow.com/a/51213884/353337
+        # ticklen_pt = ax.yaxis.majorTicks[0].tick1line.get_markersize()
+        # dist_in = (pad_pt + ticklen_pt) / 72.0
+        dist_in = pad_pt / 72.0
         # get axes width in inches
         # https://stackoverflow.com/a/19306776/353337
         bbox = ax.get_window_extent().transformed(plt.gcf().dpi_scale_trans.inverted())
-        pos_x = -pad_in / bbox.width
+        pos_x = -dist_in / bbox.width
     else:
         pos_x = 0.0
 
