@@ -1,39 +1,25 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import pytest
 
 import dufte
 
 
-@pytest.mark.parametrize(
-    "filename, light, noise, offsets",
-    [[None, True, 0.1, (1.0, 1.50, 1.60)], [None, True, 0.0, (1.0, 1.50, 1.51)]],
-)
-def test_plot(filename, light: bool, noise, offsets):
-    rng = np.random.default_rng(0)
+def test_plot():
+    offsets = [1.0, 1.50, 1.60]
+    offsets = [1.0, 1.50, 1.51]
+
     x0 = np.linspace(0.0, 3.0, 100)
     labels = ["no balancing", "CRV-27", "CRV-27*"]
 
     with plt.style.context(dufte.style):
         for label, offset in zip(labels, offsets):
             y0 = offset * x0 / (x0 + 1)
-            y0 += noise * rng.random(len(y0))
             plt.plot(x0, y0, label=label)
 
         plt.xlabel("distance [m]")
         dufte.ylabel("voltage [V]")
         # plt.title("title")
         dufte.legend()
-
-        if not light:
-            gh_dark_bg = "#0d1117"
-            plt.gca().set_facecolor(gh_dark_bg)
-            plt.gcf().patch.set_facecolor(gh_dark_bg)
-
-        if filename:
-            plt.savefig(filename, transparent=True, bbox_inches="tight")
-        else:
-            plt.show()
 
 
 def test_no_labels():
@@ -80,9 +66,6 @@ def test_all_nan():
 
 
 if __name__ == "__main__":
-    # test_plot(None, True, 0.1, (1.0, 1.5, 1.6))
-    # test_plot("ex1-light.svg", True, 0.1, (1.0, 1.5, 1.6))
-    # plt.close()
-    # test_plot("ex1-dark.svg", False, 0.1, (1.0, 1.5, 1.6))
-    test_plot("ex1.svg", False, 0.1, (1.0, 1.5, 1.6))
+    test_plot()
+    plt.show()
     plt.close()
