@@ -10,31 +10,30 @@ import dufte
     [[None, True, 0.1, (1.0, 1.50, 1.60)], [None, True, 0.0, (1.0, 1.50, 1.51)]],
 )
 def test_plot(filename, light: bool, noise, offsets):
-    plt.style.use(dufte.style)
-
     rng = np.random.default_rng(0)
-
     x0 = np.linspace(0.0, 3.0, 100)
     labels = ["no balancing", "CRV-27", "CRV-27*"]
-    for label, offset in zip(labels, offsets):
-        y0 = offset * x0 / (x0 + 1)
-        y0 += noise * rng.random(len(y0))
-        plt.plot(x0, y0, label=label)
 
-    plt.xlabel("distance [m]")
-    dufte.ylabel("voltage [V]")
-    # plt.title("title")
-    dufte.legend()
+    with plt.style.context(dufte.style):
+        for label, offset in zip(labels, offsets):
+            y0 = offset * x0 / (x0 + 1)
+            y0 += noise * rng.random(len(y0))
+            plt.plot(x0, y0, label=label)
 
-    if not light:
-        gh_dark_bg = "#0d1117"
-        plt.gca().set_facecolor(gh_dark_bg)
-        plt.gcf().patch.set_facecolor(gh_dark_bg)
+        plt.xlabel("distance [m]")
+        dufte.ylabel("voltage [V]")
+        # plt.title("title")
+        dufte.legend()
 
-    if filename:
-        plt.savefig(filename, transparent=True, bbox_inches="tight")
-    else:
-        plt.show()
+        if not light:
+            gh_dark_bg = "#0d1117"
+            plt.gca().set_facecolor(gh_dark_bg)
+            plt.gcf().patch.set_facecolor(gh_dark_bg)
+
+        if filename:
+            plt.savefig(filename, transparent=True, bbox_inches="tight")
+        else:
+            plt.show()
 
 
 def test_no_labels():
