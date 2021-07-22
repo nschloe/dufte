@@ -37,7 +37,7 @@ duftiness.
 
 See [here](tests/tests/create_comparison.py) for how to create the below plots.
 
-<img src="https://nschloe.github.io/dufte/ex1-mpl.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg">
+<img src="https://nschloe.github.io/dufte/ex1-mpl.svg" width="40%"> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg" width="40%">
 :----:|:----:|
 matplotlib | dufte with `dufte.legend()` |
 
@@ -50,7 +50,7 @@ Further reading:
 
  * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
 
-   <img src="https://nschloe.github.io/dufte/data-ink.webp" width="40%"/>
+   <img src="https://nschloe.github.io/dufte/data-ink.webp" width="50%"/>
 
  * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
  * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
