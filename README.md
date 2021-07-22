@@ -35,13 +35,13 @@ duftiness.
 
 #### Comparison with default Matplotlib
 
-See [here](tests/tests/create_comparison.py) for how to create the below plots.
+See [here](tests/create_comparison.py) for how to create the below plots.
 
-<a href="tests/tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></a> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/>
+<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></a> |  <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/></a>
 :----:|:----:|
 matplotlib | dufte with `dufte.legend()` |
 
-<img src="https://nschloe.github.io/dufte/bars-mpl.svg"/> | <img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/> | <img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/>
+<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-mpl.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/></a>
 :----:|:----:|:----:|
 matplotlib | dufte | dufte with `dufte.show_bar_values()` |
 
