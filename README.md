@@ -37,7 +37,7 @@ duftiness.
 
 See [here](tests/tests/create_comparison.py) for how to create the below plots.
 
-<img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/>
+<a href="tests/tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></a> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/>
 :----:|:----:|
 matplotlib | dufte with `dufte.legend()` |
 
