@@ -17,7 +17,25 @@
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
+To use, simply select the `dufte` style:
+```python
+import dufte
+import matplotlib.pyplot as plt
+
+# global setting:
+plt.style.use(dufte.style)
+
+# with a context manager:
+with plt.style.context(dufte.style_bar):
+    # ...
+```
+
+Check out `dufte.legend()`, `dufte.ylabel()`, and `dufte.show_bar_values()` for more
+duftiness.
+
 #### Comparison with default Matplotlib
+
+See [here](tests/tests/create_comparison.py) for how to create the below plots.
 
 <img src="https://nschloe.github.io/dufte/ex1-mpl.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg">
 :----:|:----:|
@@ -27,54 +45,6 @@ matplotlib | dufte with `dufte.legend()` |
 :----:|:----:|:----:|
 matplotlib | dufte | dufte with `dufte.show_bar_values()` |
 
-To use, simply select the `dufte` style. Check out `dufte.legend()` and
-`dufte.ylabel()` for more duftness.
-```python
-import matplotlib.pyplot as plt
-import dufte
-import numpy as np
-
-plt.style.use(dufte.style)
-
-rng = np.random.default_rng(0)
-
-x0 = np.linspace(0.0, 3.0, 100)
-y0 = x0 / (x0 + 1)
-y0 += 0.1 * rng.random(len(y0))
-plt.plot(x0, y0, label="no balacing")
-
-x1 = np.linspace(0.0, 3.0, 100)
-y1 = 1.5 * x1 / (x1 + 1)
-y1 += 0.1 * rng.random(len(y1))
-plt.plot(x1, y1, label="CRV-27")
-
-x2 = np.linspace(0.0, 3.0, 100)
-y2 = 1.6 * x2 / (x2 + 1)
-y2 += 0.1 * rng.random(len(y2))
-plt.plot(x2, y2, label="CRV-27*")
-
-dufte.ylabel("ylabel")
-dufte.legend()
-
-plt.show()
-```
-The bar plot is created with `dufte.style_bar` here and `dufte.show_bar_values()`.
-Note the use of `context` instead of `style.use()`; both are appropriate.
-```python
-import matplotlib.pyplot as plt
-import dufte
-
-
-with plt.style.context(dufte.style_bar):
-    labels = ["Australia", "Brazil", "China", "Germany", "Mexico", "United\nStates"]
-    vals = [21.65, 24.5, 6.95, 8.40, 21.00, 8.55]
-    xpos = range(len(vals))
-    plt.bar(xpos, vals)
-    plt.xticks(xpos, labels)
-    dufte.show_bar_values("{:.2f}")
-    plt.title("average temperature [°C]")
-    plt.show()
-```
 
 Further reading:
 
