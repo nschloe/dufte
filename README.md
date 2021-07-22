@@ -17,8 +17,15 @@
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
-<img src="https://nschloe.github.io/dufte/ex1.svg"> |  <img src="https://nschloe.github.io/dufte/bar.svg">
+#### Comparison with default Matplotlib
+
+<img src="https://nschloe.github.io/dufte/ex1-mpl.svg"> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg">
 :----:|:----:|
+matplotlib | dufte with `dufte.legend()` |
+
+<img src="https://nschloe.github.io/dufte/bars-mpl.svg"> | <img src="https://nschloe.github.io/dufte/bars-dufte1.svg"> | <img src="https://nschloe.github.io/dufte/bars-dufte2.svg">
+:----:|:----:|:----:|
+matplotlib | dufte | dufte with `dufte.show_bar_values()` |
 
 To use, simply select the `dufte` style. Check out `dufte.legend()` and
 `dufte.ylabel()` for more duftness.
