@@ -37,11 +37,11 @@ duftiness.
 
 See [here](tests/tests/create_comparison.py) for how to create the below plots.
 
-<img src="https://nschloe.github.io/dufte/ex1-mpl.svg" width="40%"> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg" width="40%">
+<img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/> |  <img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/>
 :----:|:----:|
 matplotlib | dufte with `dufte.legend()` |
 
-<img src="https://nschloe.github.io/dufte/bars-mpl.svg"> | <img src="https://nschloe.github.io/dufte/bars-dufte1.svg"> | <img src="https://nschloe.github.io/dufte/bars-dufte2.svg">
+<img src="https://nschloe.github.io/dufte/bars-mpl.svg"/> | <img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/> | <img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/>
 :----:|:----:|:----:|
 matplotlib | dufte | dufte with `dufte.show_bar_values()` |
 
