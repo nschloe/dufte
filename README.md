@@ -28,6 +28,7 @@ plt.style.use(dufte.style)
 # with a context manager:
 with plt.style.context(dufte.style_bar):
     # ...
+    pass
 ```
 
 Check out `dufte.legend()`, `dufte.ylabel()`, and `dufte.show_bar_values()` for more
