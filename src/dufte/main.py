@@ -87,6 +87,9 @@ style_bar["xtick.major.width"] = 0
 # unhide the bar labels
 style_bar["xtick.major.pad"] = 13
 style_bar["font.size"] = 16
+# default:
+style_bar["axes.xmargin"] = mpl.rcParams["axes.xmargin"]
+# style_bar["ytick.major.size"] = 10
 
 
 def _move_min_distance(targets, min_distance):
@@ -243,6 +246,9 @@ def show_bar_values(fmt="{}"):
     # turn off y-ticks and y-grid
     plt.tick_params(axis="y", which="both", left=False, right=False, labelleft=False)
     plt.grid(False)
+
+    # remove margins
+    plt.margins(x=0)
 
     data_to_axis = ax.transData + ax.transAxes.inverted()
     axis_to_data = ax.transAxes + ax.transData.inverted()

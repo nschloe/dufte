@@ -17,62 +17,42 @@
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
-<img src="https://nschloe.github.io/dufte/ex1.svg"> |  <img src="https://nschloe.github.io/dufte/bar.svg">
-:----:|:----:|
-
-To use, simply select the `dufte` style. Check out `dufte.legend()` and
-`dufte.ylabel()` for more duftness.
+To use, simply select the `dufte` style:
 ```python
-import matplotlib.pyplot as plt
 import dufte
-import numpy as np
+import matplotlib.pyplot as plt
 
+# global setting:
 plt.style.use(dufte.style)
 
-rng = np.random.default_rng(0)
-
-x0 = np.linspace(0.0, 3.0, 100)
-y0 = x0 / (x0 + 1)
-y0 += 0.1 * rng.random(len(y0))
-plt.plot(x0, y0, label="no balacing")
-
-x1 = np.linspace(0.0, 3.0, 100)
-y1 = 1.5 * x1 / (x1 + 1)
-y1 += 0.1 * rng.random(len(y1))
-plt.plot(x1, y1, label="CRV-27")
-
-x2 = np.linspace(0.0, 3.0, 100)
-y2 = 1.6 * x2 / (x2 + 1)
-y2 += 0.1 * rng.random(len(y2))
-plt.plot(x2, y2, label="CRV-27*")
-
-dufte.ylabel("ylabel")
-dufte.legend()
-
-plt.show()
-```
-The bar plot is created with `dufte.style_bar` here and `dufte.show_bar_values()`.
-Note the use of `context` instead of `style.use()`; both are appropriate.
-```python
-import matplotlib.pyplot as plt
-import dufte
-
-
+# with a context manager:
 with plt.style.context(dufte.style_bar):
-    labels = ["Australia", "Brazil", "China", "Germany", "Mexico", "United\nStates"]
-    vals = [21.65, 24.5, 6.95, 8.40, 21.00, 8.55]
-    xpos = range(len(vals))
-    plt.bar(xpos, vals)
-    plt.xticks(xpos, labels)
-    dufte.show_bar_values("{:.2f}")
-    plt.title("average temperature [°C]")
-    plt.show()
+    # ...
+    pass
 ```
+
+Check out `dufte.legend()`, `dufte.ylabel()`, and `dufte.show_bar_values()` for more
+duftiness.
+
+#### Comparison with default Matplotlib
+
+See [here](tests/create_comparison.py) for how to create the below plots.
+
+<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></a> |  <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/></a>
+:----:|:----:|
+matplotlib | dufte with `dufte.legend()` |
+
+<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-mpl.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/></a>
+:----:|:----:|:----:|
+matplotlib | dufte | dufte with `dufte.show_bar_values()` |
+
 
 Further reading:
 
  * [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
-   <img src="https://nschloe.github.io/dufte/data-ink.webp">
+
+   <img src="https://nschloe.github.io/dufte/data-ink.webp" width="50%"/>
+
  * [Remove to improve: Line Graph Edition](https://youtu.be/bDbJBWvonVI)
  * [Show the Data - Maximize the Data Ink Ratio](https://youtu.be/pCp0a5_YIWE)
  * [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
