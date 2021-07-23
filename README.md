@@ -38,14 +38,33 @@ duftiness.
 
 See [here](tests/create_comparison.py) for how to create the below plots.
 
-<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></a> |  <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/></a>
-:----:|:----:|
-matplotlib | dufte with `dufte.legend()` |
+<a href="tests/create_comparison.py">
+<table width="100%">
+  <tr>
+  <td width="50%"><img src="https://nschloe.github.io/dufte/ex1-mpl.svg"/></td>
+  <td width="50%"><img src="https://nschloe.github.io/dufte/ex1-dufte.svg"/></td>
+  </tr>
+  <tr>
+    <td>matplotlib</td>
+    <td>dufte with <code>dufte.legend()</code></td>
+  </tr>
+</table>
+</a>
 
-<a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-mpl.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/></a> | <a href="tests/create_comparison.py"><img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/></a>
-:----:|:----:|:----:|
-matplotlib | dufte | dufte with `dufte.show_bar_values()` |
-
+<a href="tests/create_comparison.py">
+<table width="100%">
+  <tr>
+  <td width="33%"><img src="https://nschloe.github.io/dufte/bars-mpl.svg"/></td>
+  <td width="33%"><img src="https://nschloe.github.io/dufte/bars-dufte1.svg"/></td>
+  <td width="33%"><img src="https://nschloe.github.io/dufte/bars-dufte2.svg"/></td>
+  </tr>
+  <tr>
+    <td>matplotlib</td>
+    <td>dufte</td>
+    <td>dufte with <code>dufte.show_bar_values()</code></td>
+  </tr>
+</table>
+</a>
 
 Further reading:
 
