@@ -65,7 +65,16 @@ def test_all_nan():
     plt.show()
 
 
+def test_logy():
+    plt.style.use(dufte.style)
+    x0 = [0.0, 0.5, 1.0, 10.0]
+    y0 = np.exp(x0)
+    plt.semilogy(x0, y0, label="exp")
+    dufte.legend()
+    dufte.ylabel("ylabel")
+
+
 if __name__ == "__main__":
-    test_plot()
+    test_logy()
     plt.show()
     plt.close()
