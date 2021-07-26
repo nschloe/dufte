@@ -124,13 +124,12 @@ def _move_min_distance(targets, min_distance):
 def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
     ax = ax or plt.gca()
 
-    fig = plt.gcf()
-
     logy = ax.get_yscale() == "log"
 
     if min_label_distance == "auto":
         # Make sure that the distance is alpha * fontsize. This needs to be translated
         # into axes units.
+        fig = plt.gcf()
         fig_height_inches = fig.get_size_inches()[1]
         ax = plt.gca()
         ax_pos = ax.get_position()
@@ -143,31 +142,33 @@ def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):
             ax_height_ylim = ylim[1] - ylim[0]
         # 1 pt = 1/72 in
         fontsize = mpl.rcParams["font.size"]
+        assert fontsize is not None
         min_label_distance_inches = fontsize / 72 * alpha
         min_label_distance = (
             min_label_distance_inches / ax_height_inches * ax_height_ylim
         )
 
-    # find all Line2D objects with a valid label
-    lines = []
-    for child in ax.get_children():
-        if isinstance(child, mpl.lines.Line2D):
-            # https://stackoverflow.com/q/64358117/353337
-            if child.get_label()[0] != "_":
-                lines.append(child)
+    # find all Line2D objects with a valid label and valid data
+    lines = [
+        child
+        for child in ax.get_children()
+        # https://stackoverflow.com/q/64358117/353337
+        if (
+            isinstance(child, mpl.lines.Line2D)
+            and child.get_label()[0] != "_"
+            and not np.all(np.isnan(child.get_ydata()))
+        )
+    ]
+
+    if len(lines) == 0:
+        return
 
     # Add "legend" entries.
     # Get last non-nan y-value.
     targets = []
     for line in lines:
         ydata = line.get_ydata()
-        if np.all(np.isnan(ydata)):
-            targets.append(np.nan)
-        else:
-            targets.append(ydata[~np.isnan(ydata)][-1])
-
-    if not targets:
-        return
+        targets.append(ydata[~np.isnan(ydata)][-1])
 
     if logy:
         targets = [math.log10(t) for t in targets]
@@ -221,7 +222,9 @@ def ylabel(string):
     # and
     # <https://github.com/matplotlib/matplotlib/issues/20677>
     yticks = ax.yaxis.get_major_ticks()
-    if len(yticks) > 0:
+    if len(yticks) == 0:
+        pos_x = 0.0
+    else:
         pad_pt = yticks[-1].get_pad()
         # https://stackoverflow.com/a/51213884/353337
         # ticklen_pt = ax.yaxis.majorTicks[0].tick1line.get_markersize()
@@ -231,13 +234,11 @@ def ylabel(string):
         # https://stackoverflow.com/a/19306776/353337
         bbox = ax.get_window_extent().transformed(plt.gcf().dpi_scale_trans.inverted())
         pos_x = -dist_in / bbox.width
-    else:
-        pos_x = 0.0
 
-    ylabel = plt.ylabel(string, horizontalalignment="right", multialignment="right")
+    yl = plt.ylabel(string, horizontalalignment="right", multialignment="right")
     # place the label 10% above the top tick
     ax.yaxis.set_label_coords(pos_x, pos_y)
-    ylabel.set_rotation(0)
+    yl.set_rotation(0)
 
 
 def show_bar_values(fmt="{}"):
