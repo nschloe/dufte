@@ -116,9 +116,7 @@ def _move_min_distance(targets, min_distance):
 
     # reorder
     idx2 = np.argsort(idx)
-    sol = sol[idx2]
-
-    return sol
+    return sol[idx2]
 
 
 def legend(ax=None, min_label_distance="auto", alpha: float = 1.0):

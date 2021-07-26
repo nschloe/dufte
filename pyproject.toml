@@ -10,4 +10,5 @@ disable = [
   "missing-module-docstring",
   "protected-access",
   "too-many-locals",
+  "import-error",
 ]
