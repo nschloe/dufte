@@ -10,7 +10,7 @@ repos:
       - id: black
         language_version: python3
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/PyCQA/pylint
+    rev: v2.9.5
     hooks:
-      - id: flake8
+      - id: pylint
