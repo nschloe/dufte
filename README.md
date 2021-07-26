@@ -105,7 +105,3 @@ To run the dufte unit tests, check out this repository and type
 ```
 pytest
 ```
-
-### License
-This software is published under the [GPLv3
-license](https://www.gnu.org/licenses/gpl-3.0.en.html).
