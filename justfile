@@ -28,4 +28,4 @@ format:
 
 lint:
 	black --check .
-	flake8 .
+	pylint .

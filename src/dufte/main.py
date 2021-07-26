@@ -77,8 +77,7 @@ style = {
         ],
     ),
     "axes.titlepad": 40,
-    "axes.titlesize": 18,
-    "axes.titlelocation": "left",
+    "axes.titlesize": 14,
 }
 
 style_bar = style.copy()
@@ -90,6 +89,8 @@ style_bar["font.size"] = 16
 # default:
 style_bar["axes.xmargin"] = mpl.rcParams["axes.xmargin"]
 # style_bar["ytick.major.size"] = 10
+style_bar["axes.titlelocation"] = "left"
+style_bar["axes.titlesize"] = 18
 
 
 def _move_min_distance(targets, min_distance):
