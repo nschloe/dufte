@@ -93,7 +93,7 @@ style_bar["axes.titlelocation"] = "left"
 style_bar["axes.titlesize"] = 18
 
 
-def _move_min_distance(targets, min_distance):
+def _move_min_distance(targets, min_distance: float):
     """Move the targets such that they are close to their original positions, but keep
     min_distance apart.
 
