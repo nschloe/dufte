@@ -1,7 +1,7 @@
 import numpy
 
 
-def nnls(A, b, eps=1.0e-10, max_steps=100):
+def nnls(A, b, eps: float = 1.0e-10, max_steps: int = 100):
     # non-negative least-squares after
     # <https://en.wikipedia.org/wiki/Non-negative_least_squares>
     A = numpy.asarray(A)
