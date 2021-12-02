@@ -1,3 +1,9 @@
+# Deprecation
+
+dufte as a stand-alone module has been deprecated and merged into [mplx](https://github.com/nschloe/mplx).
+
+---
+
 <p align="center">
   <a href="https://github.com/nschloe/dufte"><img alt="dufte-logo" src="https://nschloe.github.io/dufte/logo.svg" width="40%"></a>
   <p align="center"><a href="https://en.wikipedia.org/wiki/Berlin_German">Da kiekste, wa?</a></p>
@@ -7,7 +13,8 @@
 [![Anaconda Cloud](https://anaconda.org/conda-forge/dufte/badges/version.svg?=style=flat-square)](https://anaconda.org/conda-forge/dufte/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/dufte.svg?style=flat-square)](https://pypi.org/project/dufte/)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/dufte.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/dufte)
-[![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)
+[![Downloads](https://pepy.tech/badge/dufte/month?style=flat-square)](https://pepy.tech/project/dufte)
+<!--[![PyPi downloads](https://img.shields.io/pypi/dm/dufte.svg?style=flat-square)](https://pypistats.org/packages/dufte)-->
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/dufte/ci?style=flat-square)](https://github.com/nschloe/dufte/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/dufte.svg?style=flat-square)](https://codecov.io/gh/nschloe/dufte)
@@ -17,7 +24,13 @@
 This package creates clean and beautiful plots that work on light and dark backgrounds.
 Inspired by the work of [Edward Tufte](https://en.wikipedia.org/wiki/Edward_Tufte).
 
-To use, simply select the `dufte` style:
+To use, install with
+
+```
+pip install dufte
+```
+
+and simply select the `dufte` style:
 
 ```python
 import dufte
@@ -67,7 +80,7 @@ See [here](tests/create_comparison.py) for how to create the below plots.
 </table>
 </a>
 
-Further reading:
+### Further reading and other styles
 
 - [Remove to improve: data-ink ratio](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
 
@@ -78,6 +91,15 @@ Further reading:
 - [Randal S. Olson's blog entry](http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/)
 - [prettyplotlib](https://github.com/olgabot/prettyplotlib)
 - [Wikipedia: Chartjunk](https://en.wikipedia.org/wiki/Chartjunk)
+
+Other styles
+
+- [John Garrett, _Science Plots_](https://github.com/garrettj403/SciencePlots)
+- [Dominik Haitz, _Cyberpunk style_](https://github.com/dhaitz/mplcyberpunk)
+- [Dominik Haitz, _Matplotlib stylesheets_](https://github.com/dhaitz/matplotlib-stylesheets)
+- [Carlos da Costa, _The Grand Budapest Hotel_](https://github.com/cako/mpl_grandbudapest)
+- [Danny Antaki, _vaporwave aesthetics_](https://github.com/dantaki/vapeplot)
+- [QuantumBlack Labs, _QuantumBlack_](https://github.com/quantumblacklabs/qbstyles)
 
 Projects using dufte:
 
@@ -100,20 +122,3 @@ non-negative least-squares problem
 
 where $`a`$ is the minimum distance between two entries and $`t_i`$ is the target
 position.
-
-### Testing
-
-To run the dufte unit tests, check out this repository and type
-
-```
-pytest
-```
-
-### Other style sheets and further reading
-
-- [John Garrett, _Science Plots_](https://github.com/garrettj403/SciencePlots)
-- [Dominik Haitz, _Cyberpunk style_](https://github.com/dhaitz/mplcyberpunk)
-- [Dominik Haitz, _Matplotlib stylesheets_](https://github.com/dhaitz/matplotlib-stylesheets)
-- [Carlos da Costa, _The Grand Budapest Hotel_](https://github.com/cako/mpl_grandbudapest)
-- [Danny Antaki, _vaporwave aesthetics_](https://github.com/dantaki/vapeplot)
-- [QuantumBlack Labs, _QuantumBlack_](https://github.com/quantumblacklabs/qbstyles)
